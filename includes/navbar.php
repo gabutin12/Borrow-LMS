@@ -19,6 +19,7 @@
         <span class="text-white fs-4 fw-bold">LMS</span>
     </div>
     <div class="navbar-right bg-white d-flex align-items-center">
+        <i class="fa-solid fa-bars"></i>
         <!-- Menu Button -->
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
             <i class="fa fa-bars" aria-hidden="true"></i>
