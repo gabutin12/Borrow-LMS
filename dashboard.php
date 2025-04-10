@@ -62,12 +62,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="main-content">
         <!-- Header Section -->
         <div class="mb-4 text-bold">
-            <h2 class="mb-3">
-                Dashboard
-            </h2>
+            <h2 class="mb-3">Dashboard</h2>
         </div>
-
-
         <div class="con tainer-fluid py-4">
             <div class="row g-4">
                 <!-- Total Books Card -->
@@ -172,6 +168,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
             </div>
+            <!-- After the charts section -->
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Library Gallery</h5>
+            </div>
+            <div class="card-body p-0">
+                <?php include('./includes/slide.php'); ?>
+            </div>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 

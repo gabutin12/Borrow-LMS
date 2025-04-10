@@ -58,7 +58,6 @@ h6,
 }
 
 
-
 /* Navbar Right */
 .navbar-right {
   width: 85%;
@@ -670,4 +669,35 @@ a:hover .card .text-warning {
 /* Table card specific */
 .card.shadow-sm.mb-4 .table-responsive {
   margin: -0.5rem -0.5rem -0.5rem -0.5rem;
+}
+
+
+/* Slider image */
+.main-content {
+  height: auto;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Slider specific styles */
+.slider-section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+@keyframes slidy {
+  0% { left: 0%; }
+  20% { left: 0%; }
+  25% { left: -100%; }
+  45% { left: -100%; }
+  50% { left: -200%; }
+  70% { left: -200%; }
+  75% { left: -300%; }
+  95% { left: -300%; }
+  100% { left: -400%; }
 }
