@@ -32,18 +32,18 @@
         </li>
         <!-- Transactions Dropdown -->
         <li class="nav-item">
-            <a class="nav-link dropdown-toggle d-flex justify-content-between align-items-center <?php echo ($page_title == 'Borrow' || $page_title == 'Return') ? '' : 'collapsed'; ?>" href="#" data-bs-toggle="collapse" data-bs-target="#transactionsDropdown" aria-expanded="<?php echo ($page_title == 'Borrow' || $page_title == 'Return') ? 'true' : 'false'; ?>">
+            <a class="nav-link dropdown-toggle d-flex justify-content-between align-items-center <?php echo ($page_title == 'Borrow Books' || $page_title == 'Return Books') ? '' : 'collapsed'; ?>" href="#" data-bs-toggle="collapse" data-bs-target="#transactionsDropdown" aria-expanded="<?php echo ($page_title == 'Borrow Books' || $page_title == 'Return Books') ? 'true' : 'false'; ?>">
                 <span><i class="bi bi-arrow-left-right"></i> Transaction</span>
             </a>
-            <ul class="collapse nav flex-column ms-4 <?php echo ($page_title == 'Borrow' || $page_title == 'Return') ? 'show' : ''; ?>" id="transactionsDropdown">
+            <ul class="collapse nav flex-column ms-4 <?php echo ($page_title == 'Borrow Books' || $page_title == 'Return Books') ? 'show' : ''; ?>" id="transactionsDropdown">
                 <li class="nav-item">
-                    <a href="borrow.php" class="nav-link <?php echo ($page_title == 'Borrow') ? 'active' : ''; ?>">
-                        <i class="bi bi-arrow-down-circle"></i> Borrow
+                    <a href="borrow.php" class="nav-link <?php echo ($page_title == 'Borrow Books') ? 'active' : ''; ?>">
+                        <i class="bi bi-arrow-down-circle"></i> Borrow Books
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="return.php" class="nav-link <?php echo ($page_title == 'Return') ? 'active' : ''; ?>">
-                        <i class="bi bi-arrow-up-circle"></i> Return
+                    <a href="return.php" class="nav-link <?php echo ($page_title == 'Return Books') ? 'active' : ''; ?>">
+                        <i class="bi bi-arrow-up-circle"></i> Return Books
                     </a>
                 </li>
             </ul>
