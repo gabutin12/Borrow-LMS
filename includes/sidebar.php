@@ -17,7 +17,7 @@
     <ul class="nav nav-pills flex-column shadow-sm">
         <!-- Reports Section -->
         <li class="nav-header mt-3">
-            <span class="nav-header-text">REPORTS</span>
+            <span class="nav-header-text">HOME</span>
         </li>
         <li class="nav-item">
             <a href="dashboard.php" class="nav-link <?php echo ($page_title == 'Dashboard') ? 'active' : ''; ?>">
