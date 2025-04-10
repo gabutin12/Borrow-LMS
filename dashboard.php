@@ -17,6 +17,14 @@ $borrowed_books = $stats['borrowed_books'];
 <div class="wrapper">
     <?php require_once 'includes/sidebar.php'; ?>
     <div class="main-content">
+        <!-- Header Section -->
+        <div class="mb-4 text-bold">
+            <h2 class="mb-3">
+                Dashboard
+            </h2>
+        </div>
+
+
         <div class="con tainer-fluid py-4">
             <div class="row g-4">
                 <!-- Total Books Card -->

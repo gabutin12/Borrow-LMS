@@ -600,3 +600,72 @@ a:hover .card .text-warning {
   display: flex;
   align-items: center;
 }
+
+/* Borrow page card styles */
+.borrow-card .card-body {
+  padding: 1.25rem;
+  height: auto;
+  min-height: 100px;
+}
+
+.borrow-card .d-flex {
+  height: 100%;
+  align-items: center !important;
+}
+
+/* Student details card styles */
+.student-details-card .card-body {
+  padding: 1.5rem;
+}
+
+.student-details-card .row {
+  margin: 0;
+}
+
+/* Table card styles */
+.table-card .card-body {
+  padding: 1.5rem;
+}
+
+/* Borrow page card styles */
+.card.shadow-sm.mb-4 {
+  height: auto;
+  margin-bottom: 1.5rem !important;
+}
+
+.card.shadow-sm.mb-4 .card-body {
+  padding: 1.5rem;
+  height: auto;
+  min-height: 90px;
+}
+
+.card.shadow-sm.mb-4 .row.align-items-center {
+  min-height: 46px;
+  margin: 0;
+}
+
+/* Form elements within cards */
+.card.shadow-sm.mb-4 .form-select,
+.card.shadow-sm.mb-4 .btn {
+  height: 38px;
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Card title styling */
+.card.shadow-sm.mb-4 .card-title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+/* Student details card specific */
+#studentDetails.card.shadow-sm.mb-4 .card-body {
+  min-height: 150px;
+}
+
+/* Table card specific */
+.card.shadow-sm.mb-4 .table-responsive {
+  margin: -0.5rem -0.5rem -0.5rem -0.5rem;
+}
