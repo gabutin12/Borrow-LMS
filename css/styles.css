@@ -3,13 +3,30 @@ body {
   background-color: #f8f9fa;
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Apply Roboto to specific text elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.nav-link,
+.btn,
+.form-control,
+.card-title,
+.modal-title {
+  font-family: 'Roboto', sans-serif;
 }
 
 /* Layout */
 .wrapper {
   display: flex;
-  width: 100%;
-  min-height: calc(100vh - 56px); /* Subtract navbar height */
+  flex-wrap: nowrap;
+  height: 100vh; /* Full height */
+  overflow: hidden; /* Prevent scrolling issues */
 }
 
 /* Navbar */
@@ -26,7 +43,7 @@ body {
 
 /* Navbar Left */
 .navbar-left {
-  width: 15%;
+  width: 17.7%;
   height: 100%; /* Match navbar height */
   background-color: #0a2558; /* Same color as the sidebar */
   display: flex;
@@ -39,6 +56,8 @@ body {
 .navbar-left span {
   color: #fff; /* Ensure LMS text is white */
 }
+
+
 
 /* Navbar Right */
 .navbar-right {
@@ -289,4 +308,366 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 0.75rem;
+}
+
+.hover-card {
+  transition: all 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Dashboard stat cards specific styles */
+.stat-card .card-body {
+  padding: 1rem;
+  min-height: auto !important;
+  height: auto !important;
+}
+
+.stat-card .card-title {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card .card-text {
+  margin-bottom: 0;
+}
+
+/* Chart cards specific styles */
+.chart-card .card-body {
+  height: 350px;
+  padding: 1.25rem;
+}
+
+.chart-card canvas {
+  height: 300px !important;
+}
+
+/* Main Content Styles */
+.main-content-students {
+  flex: 1;
+  margin-left: 15%; /* Match sidebar width */
+  padding: 2rem;
+  background: #f8f9fa;
+  height: calc(100vh - 56px); /* Subtract navbar height */
+  overflow-y: auto;
+}
+
+/* Table Styles */
+.table-responsive {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.table td {
+  vertical-align: middle;
+  padding: 0.75rem;
+}
+
+.table img {
+  object-fit: cover;
+  border: 2px solid #dee2e6;
+}
+/* DataTables Custom Styles */
+.dataTables_wrapper {
+  padding: 1rem 0;
+}
+
+.dataTables_length {
+  margin-bottom: 1rem;
+}
+
+.dataTables_filter {
+  margin-bottom: 1rem;
+}
+
+.dataTables_filter input {
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  padding: 0.375rem 0.75rem;
+}
+
+.dataTables_info {
+  padding-top: 1rem;
+}
+
+.dataTables_paginate {
+  padding-top: 1rem;
+}
+
+.page-link {
+  color: #0d6efd;
+}
+
+.page-item.active .page-link {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.main-content-courses {
+  flex: 1;
+  margin-left: 15%;
+  padding: 2rem;
+  background: #f8f9fa;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+#coursesTable td {
+  vertical-align: middle;
+}
+
+#coursesTable .btn {
+  margin: 0 2px;
+}
+
+.main-content-books {
+  flex: 1;
+  margin-left: 15%;
+  padding: 2rem;
+  background: #f8f9fa;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+#booksTable td {
+  vertical-align: middle;
+}
+
+#booksTable .btn {
+  margin: 0 2px;
+}
+
+#booksTable img {
+  object-fit: cover;
+  border: 1px solid #dee2e6;
+}
+
+.main-content-category {
+  flex: 1;
+  margin-left: 15%;
+  padding: 2rem;
+  background: #f8f9fa;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+#categoriesTable td {
+  vertical-align: middle;
+}
+
+#categoriesTable .btn {
+  margin: 0 2px;
+}
+
+/* Status Cell Colors */
+.text-success {
+  color: #28a745 !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+/* Borrowed Books Logs Styles */
+.main-content-borrow-logs {
+  flex: 1;
+  margin-left: 15%;
+  padding: 2rem;
+  background: #f8f9fa;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+#borrowLogsTable td {
+  vertical-align: middle;
+}
+
+/* Status Colors */
+.text-warning {
+  color: #ffc107 !important;
+}
+
+.text-success {
+  color: #28a745 !important;
+}
+
+/* Breadcrumb-style header styling */
+.mb-4 h4 a:hover {
+  text-decoration: underline !important;
+}
+
+.mb-4 h4 .bi-chevron-right {
+  color: #6c757d;
+  margin: 0 0.5rem;
+}
+
+/* Dashboard card hover effects */
+.hover-card {
+  transition: all 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  cursor: pointer;
+}
+
+/* Preserve text colors on hover */
+a .card .text-muted {
+  transition: color 0.3s ease;
+}
+
+a:hover .card .text-muted {
+  color: #6c757d !important;
+}
+
+/* Preserve icon colors on hover */
+a:hover .card .text-primary {
+  color: #0d6efd !important;
+}
+
+a:hover .card .text-success {
+  color: #198754 !important;
+}
+
+a:hover .card .text-info {
+  color: #0dcaf0 !important;
+}
+
+a:hover .card .text-warning {
+  color: #ffc107 !important;
+}
+
+/* Chart container styles */
+.card canvas {
+  height: 300px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Chart card styles */
+.card.shadow-sm {
+  height: 100%;
+  margin-bottom: 1rem;
+}
+
+.card.shadow-sm .card-body {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  margin-bottom: 1rem !important;
+}
+
+/* Dashboard stat cards specific styles */
+.stat-card .card-body {
+  padding: 1.25rem;
+  height: 100px !important; /* Fixed height for all status cards */
+}
+
+.stat-card .d-flex {
+  height: 100%;
+  align-items: center !important;
+}
+
+.stat-card .card-title {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card .card-text {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
+.stat-card .icon-shape {
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Borrow page card styles */
+.borrow-card .card-body {
+  padding: 1.25rem;
+  height: auto;
+  min-height: 100px;
+}
+
+.borrow-card .d-flex {
+  height: 100%;
+  align-items: center !important;
+}
+
+/* Student details card styles */
+.student-details-card .card-body {
+  padding: 1.5rem;
+}
+
+.student-details-card .row {
+  margin: 0;
+}
+
+/* Table card styles */
+.table-card .card-body {
+  padding: 1.5rem;
+}
+
+/* Borrow page card styles */
+.card.shadow-sm.mb-4 {
+  height: auto;
+  margin-bottom: 1.5rem !important;
+}
+
+.card.shadow-sm.mb-4 .card-body {
+  padding: 1.5rem;
+  height: auto;
+  min-height: 90px;
+}
+
+.card.shadow-sm.mb-4 .row.align-items-center {
+  min-height: 46px;
+  margin: 0;
+}
+
+/* Form elements within cards */
+.card.shadow-sm.mb-4 .form-select,
+.card.shadow-sm.mb-4 .btn {
+  height: 38px;
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Card title styling */
+.card.shadow-sm.mb-4 .card-title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+/* Student details card specific */
+#studentDetails.card.shadow-sm.mb-4 .card-body {
+  min-height: 150px;
+}
+
+/* Table card specific */
+.card.shadow-sm.mb-4 .table-responsive {
+  margin: -0.5rem -0.5rem -0.5rem -0.5rem;
 }
