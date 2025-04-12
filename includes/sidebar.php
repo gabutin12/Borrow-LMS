@@ -101,8 +101,41 @@
                 <i class="bi bi-sliders"></i> System Settings
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="user_management.php" class="nav-link <?php echo ($page_title == 'User Management') ? 'active' : ''; ?>">
+                <i class="bi bi-person-circle"></i> User Management
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="reports.php" class="nav-link <?php echo ($page_title == 'Reports') ? 'active' : ''; ?>">
+                <i class="bi bi-file-earmark-text"></i> Reports
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="change_password.php" class="nav-link <?php echo ($page_title == 'Change Password') ? 'active' : ''; ?>">
+                <i class="bi bi-key"></i> Change Password
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="about.php" class="nav-link <?php echo ($page_title == 'About us') ? 'active' : ''; ?>">
+                <i class="bi bi-info-circle"></i> About us
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="logout.php" class="nav-link <?php echo ($page_title == 'Logout') ? 'active' : ''; ?>">
+                <i class="bi bi-box-arrow-right"></i> Logout
+                </a>
             </ul>
         </li>
+
+        <!-- About
+        <li class="nav-header">
+            <span class="nav-header-text"></span>
+        </li> -->
 
         <!-- End of Sidebar links -->
     </ul>

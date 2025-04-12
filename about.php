@@ -1,9 +1,9 @@
 <?php 
 @session_start();
-$page_title = "Settings";
 @require_once 'db_connection.php';
 require_once 'includes/header.php';
 require_once 'includes/navbar.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ require_once 'includes/navbar.php';
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Settings</title>
+        <title>About Us</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="images/top_logo.ico" type="image/x-icon" />
@@ -31,13 +31,16 @@ require_once 'includes/navbar.php';
         <!-- bootstrap js -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="js/jquery.min.js"></script>
-        <!-- custom css -->
-        <link href="css/styles.css" rel="stylesheet"> 
     </head>
     <body>
-        <div class="wrapper">
+    <div class="wrapper">
             <?php require_once 'includes/sidebar.php'; ?>
         <div class="main-content">
-        <h1>Settings</h1>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="text-center">About Us</h3>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
