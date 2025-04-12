@@ -86,5 +86,24 @@
                 </li>
             </ul>
         </li>
+
+        <!-- Management Settings -->
+        <li class="nav-header">
+            <span class="nav-header-text">MANAGE SETTINGS</span>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link dropdown-toggle d-flex justify-content-between align-items-center <?php echo ($page_title == 'Settings') ? '' : 'collapsed'; ?>" href="#" data-bs-toggle="collapse" data-bs-target="#settingsDropdown" aria-expanded="<?php echo ($page_title == 'Settings') ? 'true' : 'false'; ?>">
+            <span><i class="bi bi-gear"></i> Settings</span>
+            </a>
+            <ul class="collapse nav flex-column ms-4 <?php echo ($page_title == 'Settings') ? 'show' : ''; ?>" id="settingsDropdown">
+            <li class="nav-item">
+                <a href="settings.php" class="nav-link <?php echo ($page_title == 'Settings') ? 'active' : ''; ?>">
+                <i class="bi bi-sliders"></i> System Settings
+                </a>
+            </li>
+            </ul>
+        </li>
+
+        <!-- End of Sidebar links -->
     </ul>
 </div>
