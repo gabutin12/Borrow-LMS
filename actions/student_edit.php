@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
     $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
     $mobile_no = mysqli_real_escape_string($conn, $_POST['mobile_no']);
+    $gender = mysqli_real_escape_string($conn, $_POST['gender']);
 
     // Check if student exists
     $check_query = "SELECT photo FROM students WHERE student_id = ?";
@@ -38,9 +39,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Update student information
-        $query = "UPDATE students SET course=?, photo=?, firstname=?, lastname=?, mobile_no=? WHERE student_id=?";
+        $query = "UPDATE students SET 
+                  course = ?, 
+                  photo = ?, 
+                  firstname = ?, 
+                  lastname = ?, 
+                  mobile_no = ?, 
+                  gender = ?
+                  WHERE student_id = ?";
         $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, "ssssss", $course, $photo, $firstname, $lastname, $mobile_no, $student_id);
+        mysqli_stmt_bind_param($stmt, "sssssss", $course, $photo, $firstname, $lastname, $mobile_no, $gender, $student_id);
 
         if (mysqli_stmt_execute($stmt)) {
             header("Location: ../list_students.php?success=updated&msg=Student updated successfully");
