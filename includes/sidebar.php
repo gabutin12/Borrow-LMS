@@ -86,5 +86,57 @@
                 </li>
             </ul>
         </li>
+
+        <!-- Management Settings -->
+        <li class="nav-header">
+            <span class="nav-header-text">MANAGE SETTINGS</span>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link dropdown-toggle d-flex justify-content-between align-items-center <?php echo ($page_title == 'Settings') ? '' : 'collapsed'; ?>" href="#" data-bs-toggle="collapse" data-bs-target="#settingsDropdown" aria-expanded="<?php echo ($page_title == 'Settings') ? 'true' : 'false'; ?>">
+            <span><i class="bi bi-gear"></i> Settings</span>
+            </a>
+            <ul class="collapse nav flex-column ms-4 <?php echo ($page_title == 'Settings') ? 'show' : ''; ?>" id="settingsDropdown">
+            <li class="nav-item">
+                <a href="settings.php" class="nav-link <?php echo ($page_title == 'Settings') ? 'active' : ''; ?>">
+                <i class="bi bi-sliders"></i> System Settings
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="user_management.php" class="nav-link <?php echo ($page_title == 'User Management') ? 'active' : ''; ?>">
+                <i class="bi bi-person-circle"></i> User Management
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="reports.php" class="nav-link <?php echo ($page_title == 'Reports') ? 'active' : ''; ?>">
+                <i class="bi bi-file-earmark-text"></i> Reports
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="change_password.php" class="nav-link <?php echo ($page_title == 'Change Password') ? 'active' : ''; ?>">
+                <i class="bi bi-key"></i> Change Password
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="about.php" class="nav-link <?php echo ($page_title == 'About us') ? 'active' : ''; ?>">
+                <i class="bi bi-info-circle"></i> About us
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="logout.php" class="nav-link <?php echo ($page_title == 'Logout') ? 'active' : ''; ?>">
+                <i class="bi bi-box-arrow-right"></i> Logout
+                </a>
+            </ul>
+        </li>
+
+        <!-- About
+        <li class="nav-header">
+            <span class="nav-header-text"></span>
+        </li> -->
+
+        <!-- End of Sidebar links -->
     </ul>
 </div>
