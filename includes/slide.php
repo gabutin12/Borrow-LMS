@@ -15,6 +15,7 @@
 <style>
 .slider-container {
     width: 100%;
+	height: 600px; /* Fixed height for the slider */
     overflow: hidden;
     margin-top: 20px;
 }

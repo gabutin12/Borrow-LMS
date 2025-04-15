@@ -1235,6 +1235,7 @@ Kiosk Information Dropdown Styles */ .dropdown-box {
 /* Override any Bootstrap default styles */
 .bg-primary {
   background-color: #0a2558;
+<<<<<<< HEAD
 }
 
 .main-content-settings {
@@ -1262,4 +1263,6 @@ Kiosk Information Dropdown Styles */ .dropdown-box {
   background: #f8f9fa;
   height: calc(100vh - 56px);
   overflow-y: auto;
+=======
+>>>>>>> aed5f6706df73a1664d50af4b41b2636ac4110b4
 }

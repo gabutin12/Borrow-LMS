@@ -169,20 +169,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
             <!-- After the charts section -->
-<div class="row mt-4">
-    <div class="col-md-12">
-        <div class="card shadow-sm">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Library Gallery</h5>
-            </div>
-            <div class="card-body p-0">
-                <?php include('./includes/slide.php'); ?>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Library Gallery</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <?php include('./includes/slide.php'); ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-        </div>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
@@ -317,3 +317,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         });
     </script>
+    <script src="js/scripts.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/slide.js"></script>
+    <!-- footer -->
+    <?php require_once 'includes/footer.php'; ?>
+    </body>
+</html>
