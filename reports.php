@@ -60,9 +60,11 @@ require_once 'db_connection.php';
                     <div class="card shadow-sm">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h5 class="card-title mb-0">Currently Borrowed Books</h5>
-                            <button class="btn btn-primary btn-sm" onclick="printReport('borrowed')">
-                                <i class="bi bi-printer"></i> Print Report
-                            </button>
+                            <div class="btn-container">
+                                <button class="btn btn-primary btn-report-print" onclick="printReport('borrowed')">
+                                    <i class="bi bi-printer"></i> Print
+                                </button>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -116,9 +118,11 @@ require_once 'db_connection.php';
                     <div class="card shadow-sm">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h5 class="card-title mb-0">Returned Books History</h5>
-                            <button class="btn btn-primary btn-sm" onclick="printReport('returned')">
-                                <i class="bi bi-printer"></i> Print Report
-                            </button>
+                            <div class="btn-container">
+                                <button class="btn btn-primary btn-report-print" onclick="printReport('returned')">
+                                    <i class="bi bi-printer"></i> Print
+                                </button>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -174,9 +178,11 @@ require_once 'db_connection.php';
                     <div class="card shadow-sm">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h5 class="card-title mb-0">Student Borrowing Statistics</h5>
-                            <button class="btn btn-primary btn-sm" onclick="printReport('students')">
-                                <i class="bi bi-printer"></i> Print Report
-                            </button>
+                            <div class="btn-container">
+                                <button class="btn btn-primary btn-report-print" onclick="printReport('students')">
+                                    <i class="bi bi-printer"></i> Print
+                                </button>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

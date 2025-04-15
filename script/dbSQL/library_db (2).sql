@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2025 at 08:13 AM
+-- Generation Time: Apr 15, 2025 at 03:08 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,14 +42,6 @@ CREATE TABLE `admin` (
 INSERT INTO `admin` (`id`, `username`, `password`, `created_at`, `remember_token`) VALUES
 (2, 'Admin', '$2y$10$GUhRRJIP20HNEBKgmxZ2s.GRKc0c1LIz5BkpFSsYea9BWi5x9wfMG', '2025-04-03 06:16:43', NULL);
 
--- Add admin_image column to admin table
-ALTER TABLE `admin` 
-ADD COLUMN `admin_image` varchar(255) DEFAULT '/images/default.jpg' AFTER `username`;
-
--- Update existing admin record with default image
-UPDATE `admin` 
-SET `admin_image` = '/images/default.jpg' 
-WHERE `username` = 'Admin';
 -- --------------------------------------------------------
 
 --
@@ -75,8 +67,8 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `picture`, `isbn`, `title`, `author`, `copyright_year`, `stocks`, `publisher`, `status`, `category`, `date_added`) VALUES
-(1, 'images/default-book.jpg', '9780132350884', 'Clean Code', 'Robert C. Martin', '2008', 4, 'Prentice Hall', 'Available', 'Programming', '2025-04-04 07:40:36'),
-(2, 'images/default-book.jpg', '9780134685991', 'Effective Java', 'Joshua Bloch', '2018', 4, 'Addison-Wesley', 'Available', 'Programming', '2025-04-04 07:40:36');
+(1, 'images/books/9780132350884.jpg', '9780132350884', 'Clean Code', 'Robert C. Martin', '2008', 4, 'Prentice Hall', 'Available', 'Programming', '2025-04-04 07:40:36'),
+(2, 'images/default-book.jpg', '9780134685991', 'Effective Java', 'Joshua Bloch', '2018', 5, 'Addison-Wesley', 'Available', 'Programming', '2025-04-04 07:40:36');
 
 -- --------------------------------------------------------
 
@@ -112,8 +104,10 @@ INSERT INTO `borrowed_books` (`id`, `student_id`, `book_isbn`, `borrow_date`, `d
 (13, 'EAX221770785', '9780134685991', '2025-04-10', '2025-04-17', '2025-04-15', 'Returned'),
 (14, 'EAX221770785', '9780132350884', '2025-04-10', '2025-04-17', '2025-04-15', 'Returned'),
 (15, 'EAX221770785', '9780134685991', '2025-04-10', '2025-04-17', '2025-04-15', 'Returned'),
-(16, 'EAX221770785', '9780132350884', '2025-04-10', '2025-04-17', NULL, 'Borrowed'),
-(17, 'EAX221770785', '9780134685991', '2025-04-10', '2025-04-17', NULL, 'Borrowed');
+(16, 'EAX221770785', '9780132350884', '2025-04-10', '2025-04-17', '2025-04-16', 'Returned'),
+(17, 'EAX221770785', '9780134685991', '2025-04-10', '2025-04-17', '2025-04-16', 'Returned'),
+(18, 'EAX221770785', '9780132350884', '2025-04-14', '2025-04-21', NULL, 'Borrowed'),
+(19, 'EAX221770785', '9780134685991', '2025-04-14', '2025-04-21', '2025-04-19', 'Returned');
 
 -- --------------------------------------------------------
 
@@ -189,6 +183,7 @@ CREATE TABLE `students` (
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `mobile_no` varchar(15) NOT NULL,
+  `gender` enum('Male','Female') NOT NULL,
   `date_registered` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -196,11 +191,11 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `course`, `photo`, `student_id`, `firstname`, `lastname`, `mobile_no`, `date_registered`) VALUES
-(2, 'BSCS', 'images/default.jpg', 'EQX087593147', 'Jane', 'Smith', '09198765432', '2025-04-04 07:12:03'),
-(6, 'BSCS', 'images/default.jpg', 'EQX0875936100', 'Jundela', 'Malazarte', '09198764151', '2025-04-04 08:40:58'),
-(10, 'BSIS', 'images/students/EAX01770785.jpg', 'EAX01770785', 'Jundela', 'Malazartea', '09198764151', '2025-04-08 06:53:00'),
-(11, 'BSIT', 'images/students/EAX221770785.jpg', 'EAX221770785', 'Ryan', 'Gabutin', '09198764151', '2025-04-10 02:48:25');
+INSERT INTO `students` (`id`, `course`, `photo`, `student_id`, `firstname`, `lastname`, `mobile_no`, `gender`, `date_registered`) VALUES
+(2, 'BSCS', 'images/default.jpg', 'EQX087593147', 'Jane', 'Smith', '09198765432', 'Female', '2025-04-04 07:12:03'),
+(6, 'BSCS', 'images/default.jpg', 'EQX0875936100', 'Jundela', 'Malazarte', '09198764151', 'Male', '2025-04-04 08:40:58'),
+(10, 'BSIS', 'images/students/EAX01770785.jpg', 'EAX01770785', 'Jundela', 'Malazartea', '09198764151', 'Male', '2025-04-08 06:53:00'),
+(11, 'BSIT', 'images/students/EAX221770785.jpg', 'EAX221770785', 'Ryan', 'Gabutin', '09198764151', 'Male', '2025-04-10 02:48:25');
 
 --
 -- Indexes for dumped tables
@@ -273,7 +268,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `borrowed_books`
 --
 ALTER TABLE `borrowed_books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `categories`
