@@ -8,7 +8,7 @@ require_once 'db_connection.php';
 
 <div class="wrapper">
     <?php require_once 'includes/sidebar.php'; ?>
-    <div class="main-content-reports">
+    <div class="main-content">
         <div class="container-fluid">
             <!-- Header Section -->
             <div class="mb-4">
