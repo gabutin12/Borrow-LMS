@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2025 at 03:08 AM
+-- Generation Time: Apr 15, 2025 at 08:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -68,7 +68,7 @@ CREATE TABLE `books` (
 
 INSERT INTO `books` (`id`, `picture`, `isbn`, `title`, `author`, `copyright_year`, `stocks`, `publisher`, `status`, `category`, `date_added`) VALUES
 (1, 'images/books/9780132350884.jpg', '9780132350884', 'Clean Code', 'Robert C. Martin', '2008', 4, 'Prentice Hall', 'Available', 'Programming', '2025-04-04 07:40:36'),
-(2, 'images/default-book.jpg', '9780134685991', 'Effective Java', 'Joshua Bloch', '2018', 5, 'Addison-Wesley', 'Available', 'Programming', '2025-04-04 07:40:36');
+(2, 'images/default-book.jpg', '9780134685991', 'Effective Java', 'Joshua Bloch', '2018', 4, 'Addison-Wesley', 'Available', 'Programming', '2025-04-04 07:40:36');
 
 -- --------------------------------------------------------
 
@@ -83,31 +83,26 @@ CREATE TABLE `borrowed_books` (
   `borrow_date` date NOT NULL,
   `due_date` date NOT NULL,
   `return_date` date DEFAULT NULL,
-  `status` enum('Borrowed','Returned') DEFAULT 'Borrowed'
+  `status` enum('Borrowed','Returned') DEFAULT 'Borrowed',
+  `fine_amount` decimal(10,2) DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `borrowed_books`
 --
 
-INSERT INTO `borrowed_books` (`id`, `student_id`, `book_isbn`, `borrow_date`, `due_date`, `return_date`, `status`) VALUES
-(1, 'EQX0875936100', '9780132350884', '2025-04-08', '2025-04-15', '2025-04-10', 'Returned'),
-(2, 'EQX0875936100', '9780134685991', '2025-04-08', '2025-04-15', '2025-04-15', 'Returned'),
-(3, 'EQX0875936100', '9780132350884', '2025-04-10', '2025-04-17', '2025-04-19', 'Returned'),
-(4, 'EQX0875936100', '9780134685991', '2025-04-10', '2025-04-17', '2025-04-19', 'Returned'),
-(5, 'EQX0875936100', '9780132350884', '2025-04-10', '2025-04-17', '2025-04-15', 'Returned'),
-(6, 'EQX0875936100', '9780134685991', '2025-04-10', '2025-04-17', '2025-04-15', 'Returned'),
-(9, 'EQX087593147', '9780132350884', '2025-04-10', '2025-04-17', '2025-04-10', 'Returned'),
-(10, 'EQX087593147', '9780134685991', '2025-04-10', '2025-04-17', '2025-04-10', 'Returned'),
-(11, 'EQX0875936100', '9780132350884', '2025-04-10', '2025-04-17', '2025-04-10', 'Returned'),
-(12, 'EAX221770785', '9780134685991', '2025-04-10', '2025-04-17', '2025-04-15', 'Returned'),
-(13, 'EAX221770785', '9780134685991', '2025-04-10', '2025-04-17', '2025-04-15', 'Returned'),
-(14, 'EAX221770785', '9780132350884', '2025-04-10', '2025-04-17', '2025-04-15', 'Returned'),
-(15, 'EAX221770785', '9780134685991', '2025-04-10', '2025-04-17', '2025-04-15', 'Returned'),
-(16, 'EAX221770785', '9780132350884', '2025-04-10', '2025-04-17', '2025-04-16', 'Returned'),
-(17, 'EAX221770785', '9780134685991', '2025-04-10', '2025-04-17', '2025-04-16', 'Returned'),
-(18, 'EAX221770785', '9780132350884', '2025-04-14', '2025-04-21', NULL, 'Borrowed'),
-(19, 'EAX221770785', '9780134685991', '2025-04-14', '2025-04-21', '2025-04-19', 'Returned');
+INSERT INTO `borrowed_books` (`id`, `student_id`, `book_isbn`, `borrow_date`, `due_date`, `return_date`, `status`, `fine_amount`) VALUES
+(1, 'EQX0875936100', '9780132350884', '2025-04-08', '2025-04-15', '2025-04-10', 'Returned', 0.00),
+(2, 'EQX0875936100', '9780134685991', '2025-04-08', '2025-04-15', '2025-04-15', 'Returned', 0.00),
+(5, 'EQX0875936100', '9780132350884', '2025-04-10', '2025-04-17', '2025-04-15', 'Returned', 0.00),
+(10, 'EQX087593147', '9780134685991', '2025-04-10', '2025-04-17', '2025-04-10', 'Returned', 0.00),
+(12, 'EAX221770785', '9780134685991', '2025-04-10', '2025-04-17', '2025-04-15', 'Returned', 0.00),
+(13, 'EAX221770785', '9780134685991', '2025-04-10', '2025-04-17', '2025-04-15', 'Returned', 0.00),
+(14, 'EAX221770785', '9780132350884', '2025-04-10', '2025-04-17', '2025-04-15', 'Returned', 0.00),
+(15, 'EAX221770785', '9780134685991', '2025-04-10', '2025-04-17', '2025-04-15', 'Returned', 0.00),
+(20, 'EAX221770785', '9780132350884', '2025-04-15', '2025-04-22', '2025-04-23', 'Returned', 0.00),
+(21, 'EAX221770785', '9780132350884', '2025-04-15', '2025-04-22', NULL, 'Borrowed', 0.00),
+(22, 'EAX221770785', '9780134685991', '2025-04-15', '2025-04-22', NULL, 'Borrowed', 0.00);
 
 -- --------------------------------------------------------
 
@@ -194,8 +189,27 @@ CREATE TABLE `students` (
 INSERT INTO `students` (`id`, `course`, `photo`, `student_id`, `firstname`, `lastname`, `mobile_no`, `gender`, `date_registered`) VALUES
 (2, 'BSCS', 'images/default.jpg', 'EQX087593147', 'Jane', 'Smith', '09198765432', 'Female', '2025-04-04 07:12:03'),
 (6, 'BSCS', 'images/default.jpg', 'EQX0875936100', 'Jundela', 'Malazarte', '09198764151', 'Male', '2025-04-04 08:40:58'),
-(10, 'BSIS', 'images/students/EAX01770785.jpg', 'EAX01770785', 'Jundela', 'Malazartea', '09198764151', 'Male', '2025-04-08 06:53:00'),
 (11, 'BSIT', 'images/students/EAX221770785.jpg', 'EAX221770785', 'Ryan', 'Gabutin', '09198764151', 'Male', '2025-04-10 02:48:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `system_settings`
+--
+
+CREATE TABLE `system_settings` (
+  `id` int(11) NOT NULL,
+  `fine_amount` decimal(10,2) DEFAULT 10.00,
+  `max_borrow_days` int(11) DEFAULT 7,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `system_settings`
+--
+
+INSERT INTO `system_settings` (`id`, `fine_amount`, `max_borrow_days`, `updated_at`) VALUES
+(1, 10.00, 5, '2025-04-15 06:20:22');
 
 --
 -- Indexes for dumped tables
@@ -249,6 +263,12 @@ ALTER TABLE `students`
   ADD UNIQUE KEY `student_id` (`student_id`);
 
 --
+-- Indexes for table `system_settings`
+--
+ALTER TABLE `system_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -268,7 +288,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `borrowed_books`
 --
 ALTER TABLE `borrowed_books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -293,6 +313,12 @@ ALTER TABLE `returns`
 --
 ALTER TABLE `students`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `system_settings`
+--
+ALTER TABLE `system_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
