@@ -1225,7 +1225,7 @@ Kiosk Information Dropdown Styles */ .dropdown-box {
 
 /* Card Header Styles */
 .card-header.bg-primary {
-  background-color: #0a2558 !important; /* Match sidebar color */
+  background-color: #0a2558; /* Match sidebar color */
 }
 
 .card-header .card-title {
@@ -1234,5 +1234,5 @@ Kiosk Information Dropdown Styles */ .dropdown-box {
 
 /* Override any Bootstrap default styles */
 .bg-primary {
-  background-color: #0a2558 !important;
+  background-color: #0a2558;
 }
