@@ -4,6 +4,12 @@ $page_title = "Borrowed Book Logs";
 require_once 'includes/header.php';
 require_once 'includes/navbar.php';
 require_once 'db_connection.php';
+
+// Fetch settings from database
+$settings_query = "SELECT fine_amount, max_borrow_days FROM system_settings WHERE id = 1";
+$settings_result = mysqli_query($conn, $settings_query);
+$settings_row = mysqli_fetch_assoc($settings_result);
+$max_borrow_days = $settings_row['max_borrow_days'];
 ?>
 
 <div class="wrapper">
@@ -17,6 +23,12 @@ require_once 'db_connection.php';
                 Borrowed Books Logs
             </h4>
         </div>
+
+        <!-- Display Current Settings
+        <div class="alert alert-info">
+            <strong>Current Settings:</strong><br>
+            Maximum Borrow Days: <strong><?php echo $max_borrow_days; ?></strong> days
+        </div> -->
 
         <!-- Logs Table -->
         <div class="card shadow-sm">
@@ -46,6 +58,11 @@ require_once 'db_connection.php';
                             $result = mysqli_query($conn, $query);
 
                             while ($row = mysqli_fetch_assoc($result)) {
+                                // Calculate due date using max_borrow_days from settings
+                                $borrow_date = new DateTime($row['borrow_date']);
+                                $due_date = clone $borrow_date;
+                                $due_date->modify("+$max_borrow_days days");
+
                                 $statusClass = $row['status'] === 'Borrowed' ? 'text-warning fw-bold' : 'text-success fw-bold';
                                 $return_date = $row['return_date'] ? date('M d, Y', strtotime($row['return_date'])) : '-';
 
@@ -55,7 +72,7 @@ require_once 'db_connection.php';
                                 echo "<td>" . htmlspecialchars($row['book_isbn']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['title']) . "</td>";
                                 echo "<td>" . date('M d, Y', strtotime($row['borrow_date'])) . "</td>";
-                                echo "<td>" . date('M d, Y', strtotime($row['due_date'])) . "</td>";
+                                echo "<td>" . $due_date->format('M d, Y') . "</td>";
                                 echo "<td>" . $return_date . "</td>";
                                 echo "<td class='$statusClass'>" . htmlspecialchars($row['status']) . "</td>";
                                 echo "</tr>";
