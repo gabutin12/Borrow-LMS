@@ -221,6 +221,8 @@ require_once 'includes/navbar.php';
             </div>
         </div>
     </div>
+    <!-- Footer Section -->
+    <?php require_once 'includes/footer.php'; ?>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
