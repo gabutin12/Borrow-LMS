@@ -20,7 +20,7 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
 </div>
 <div class="wrapper">
     <?php require_once 'includes/sidebar.php'; ?>
-    <div class="main-content-students p-4">
+    <div class="main-content-students">
         <?php
         if (isset($_GET['success'])) {
             $message = '';

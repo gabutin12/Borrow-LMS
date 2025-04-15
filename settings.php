@@ -17,7 +17,7 @@ $max_borrow_days = $settings['max_borrow_days'] ?? 7;
 
 <div class="wrapper">
     <?php require_once 'includes/sidebar.php'; ?>
-    <div class="main-content">
+    <div class="main-content-settings">
         <!-- Error/Success Messages -->
         <div class="container-fluid">
             <?php if (isset($_SESSION['message'])): ?>

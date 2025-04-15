@@ -405,10 +405,10 @@ h6,
 /* Main Content Styles */
 .main-content-students {
   flex: 1;
-  margin-left: 15%; /* Match sidebar width */
+  margin-left: 15%;
   padding: 2rem;
   background: #f8f9fa;
-  height: calc(100vh - 56px); /* Subtract navbar height */
+  height: calc(100vh - 56px);
   overflow-y: auto;
 }
 
@@ -841,10 +841,10 @@ a:hover .card .text-warning {
 /* About Us Page Styles */
 .main-content-aboutus {
   flex: 1;
-  margin-left: 250px;
+  margin-left: 15%;
   padding: 2rem;
   background: #f8f9fa;
-  min-height: calc(100vh - 56px);
+  height: calc(100vh - 56px);
   overflow-y: auto;
 }
 
@@ -1225,7 +1225,7 @@ Kiosk Information Dropdown Styles */ .dropdown-box {
 
 /* Card Header Styles */
 .card-header.bg-primary {
-  background-color: #0a2558 !important; /* Match sidebar color */
+  background-color: #0a2558; /* Match sidebar color */
 }
 
 .card-header .card-title {
@@ -1234,5 +1234,32 @@ Kiosk Information Dropdown Styles */ .dropdown-box {
 
 /* Override any Bootstrap default styles */
 .bg-primary {
-  background-color: #0a2558 !important;
+  background-color: #0a2558;
+}
+
+.main-content-settings {
+  flex: 1;
+  margin-left: 15%;
+  padding: 2rem;
+  background: #f8f9fa;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+.main-content-borrow {
+  flex: 1;
+  margin-left: 15%;
+  padding: 2rem;
+  background: #f8f9fa;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+.main-content-returns {
+  flex: 1;
+  margin-left: 15%;
+  padding: 2rem;
+  background: #f8f9fa;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
 }
