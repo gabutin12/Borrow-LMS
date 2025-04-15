@@ -8,7 +8,7 @@ require_once 'db_connection.php';
 
 <div class="wrapper">
     <?php require_once 'includes/sidebar.php'; ?>
-    <div class="main-content-category p-4">
+    <div class="main-content-category">
 
         <?php
         if (isset($_GET['success'])) {
