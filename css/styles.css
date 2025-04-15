@@ -776,3 +776,64 @@ a:hover .card .text-warning {
     left: -400%;
   }
 }
+
+.main-content-reports {
+  flex: 1;
+  margin-left: 15%;
+  padding: 2rem;
+  background: #f8f9fa;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+/* Reports page specific styles */
+.reports-container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.reports-header {
+  margin-bottom: 1.5rem;
+}
+
+.nav-tabs {
+  border-bottom: 2px solid #dee2e6;
+  margin-bottom: 1.5rem;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+  color: #6c757d;
+  padding: 0.75rem 1rem;
+  margin-right: 0.5rem;
+  font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+  color: #0d6efd;
+  border-bottom: 2px solid #0d6efd;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  background-color: #fff;
+  border-bottom: 1px solid #e9ecef;
+  padding: 1rem;
+}
+
+.table-responsive {
+  margin: 0;
+}
+
+.dataTables_wrapper .dt-buttons {
+  margin-bottom: 1rem;
+}
+
+.dataTables_wrapper .dt-buttons .btn {
+  margin-right: 0.5rem;
+}
