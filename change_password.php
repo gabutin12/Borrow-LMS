@@ -1,15 +1,14 @@
 <?php
-@session_start();
-$page_title = "Settings";
-@require_once 'db_connection.php';
+session_start();
+$page_title = "Change Password";
 require_once 'includes/header.php';
 require_once 'includes/navbar.php';
 ?>
 
 <div class="wrapper">
     <?php require_once 'includes/sidebar.php'; ?>
-    <div class="main-content">
-
+    <div class="main-content-changeps">
+        <!-- Leave this section blank -->
     </div>
 </div>
 

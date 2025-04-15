@@ -7,6 +7,7 @@ if (isset($_POST['add'])) {
     $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
     $course = mysqli_real_escape_string($conn, $_POST['course']);
     $mobile_no = mysqli_real_escape_string($conn, $_POST['mobile_no']);
+    $gender = mysqli_real_escape_string($conn, $_POST['gender']);
     $photo = 'images/students/default.jpg'; // Default image
 
     // Check if student ID already exists
@@ -44,10 +45,10 @@ if (isset($_POST['add'])) {
     }
 
     // Insert student
-    $query = "INSERT INTO students (student_id, firstname, lastname, course, mobile_no, photo) 
-              VALUES (?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO students (student_id, firstname, lastname, course, mobile_no, gender, photo) 
+              VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "ssssss", $student_id, $firstname, $lastname, $course, $mobile_no, $photo);
+    mysqli_stmt_bind_param($stmt, "sssssss", $student_id, $firstname, $lastname, $course, $mobile_no, $gender, $photo);
 
     if (mysqli_stmt_execute($stmt)) {
         $_SESSION['success'] = 'Student added successfully';

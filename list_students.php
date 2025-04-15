@@ -76,13 +76,13 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                         <th>Firstname</th>
                         <th>Lastname</th>
                         <th>Mobile No.</th>
+                        <th>Gender</th>
                         <th>Date Registered</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    // Fetch students from the database
                     $query = "SELECT *, DATE_FORMAT(date_registered, '%M %d, %Y') as formatted_date FROM students";
                     $result = mysqli_query($conn, $query);
 
@@ -95,19 +95,18 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                             echo "<td>" . htmlspecialchars($row['firstname']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['lastname']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['mobile_no']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['gender']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['formatted_date']) . "</td>";
                             echo "<td>
-                                    <button class='btn btn-success btn-sm edit-btn' data-id='" . htmlspecialchars($row['student_id']) . "'>
-                                        <i class='bi bi-pencil'></i> Edit
-                                    </button>
-                                    <button class='btn btn-danger btn-sm delete-btn' data-id='" . htmlspecialchars($row['student_id']) . "'>
-                                        <i class='bi bi-trash'></i> Delete
-                                    </button>
-                                </td>";
+                        <button class='btn btn-success btn-sm edit-btn' data-id='" . htmlspecialchars($row['student_id']) . "'>
+                            <i class='bi bi-pencil'></i> Edit
+                        </button>
+                        <button class='btn btn-danger btn-sm delete-btn' data-id='" . htmlspecialchars($row['student_id']) . "'>
+                            <i class='bi bi-trash'></i> Delete
+                        </button>
+                    </td>";
                             echo "</tr>";
                         }
-                    } else {
-                        echo "<tr><td colspan='8' class='text-center'>No students found</td></tr>";
                     }
                     ?>
                 </tbody>
@@ -157,6 +156,14 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                             <label class="form-label">Photo</label>
                             <input type="file" name="photo" class="form-control" accept="image/*">
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label">Gender</label>
+                            <select name="gender" class="form-select" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -205,6 +212,13 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                         <div class="mb-3">
                             <label class="form-label">Mobile No.</label>
                             <input type="text" name="mobile_no" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Gender</label>
+                            <select name="gender" class="form-select" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">

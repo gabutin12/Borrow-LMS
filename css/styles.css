@@ -57,7 +57,6 @@ h6,
   color: #fff; /* Ensure LMS text is white */
 }
 
-
 /* Navbar Right */
 .navbar-right {
   width: 85%;
@@ -73,6 +72,65 @@ h6,
   margin: 0; /* Remove any default margin */
   overflow: visible; /* Ensure child elements are visible */
   position: relative; /* Allow proper positioning of child elements */
+}
+
+/* Admin Profile Section Styles */
+.navbar-right .d-flex.align-items-center.gap-3 {
+  background-color: #f8f9fa;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.navbar-right .d-flex.align-items-center.gap-3:hover {
+  background-color: #f1f3f5;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Admin Image Styles */
+.navbar-right .rounded-circle {
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.navbar-right .rounded-circle:hover {
+  transform: scale(1.05);
+}
+
+/* Admin Name Styles */
+.navbar-right .fw-medium {
+  color: #495057;
+  font-size: 0.95rem;
+  margin-right: 1rem !important;
+  transition: color 0.3s ease;
+}
+
+/* Logout Button Styles */
+.navbar-right .nav-link {
+  color: #6c757d;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-right .nav-link:hover {
+  background-color: #e9ecef;
+  color: #dc3545;
+  transform: translateY(-1px);
+}
+
+.navbar-right .nav-link i {
+  font-size: 1.25rem;
+}
+
+/* Tooltip custom style */
+.tooltip {
+  font-size: 0.875rem;
 }
 
 /* Remove underlines from all navbar links */
@@ -671,7 +729,6 @@ a:hover .card .text-warning {
   margin: -0.5rem -0.5rem -0.5rem -0.5rem;
 }
 
-
 /* Slider image */
 .main-content {
   height: auto;
@@ -691,13 +748,92 @@ a:hover .card .text-warning {
 }
 
 @keyframes slidy {
-  0% { left: 0%; }
-  20% { left: 0%; }
-  25% { left: -100%; }
-  45% { left: -100%; }
-  50% { left: -200%; }
-  70% { left: -200%; }
-  75% { left: -300%; }
-  95% { left: -300%; }
-  100% { left: -400%; }
+  0% {
+    left: 0%;
+  }
+  20% {
+    left: 0%;
+  }
+  25% {
+    left: -100%;
+  }
+  45% {
+    left: -100%;
+  }
+  50% {
+    left: -200%;
+  }
+  70% {
+    left: -200%;
+  }
+  75% {
+    left: -300%;
+  }
+  95% {
+    left: -300%;
+  }
+  100% {
+    left: -400%;
+  }
+}
+
+.main-content-reports {
+  flex: 1;
+  margin-left: 15%;
+  padding: 2rem;
+  background: #f8f9fa;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+/* Reports page specific styles */
+.reports-container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.reports-header {
+  margin-bottom: 1.5rem;
+}
+
+.nav-tabs {
+  border-bottom: 2px solid #dee2e6;
+  margin-bottom: 1.5rem;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+  color: #6c757d;
+  padding: 0.75rem 1rem;
+  margin-right: 0.5rem;
+  font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+  color: #0d6efd;
+  border-bottom: 2px solid #0d6efd;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  background-color: #fff;
+  border-bottom: 1px solid #e9ecef;
+  padding: 1rem;
+}
+
+.table-responsive {
+  margin: 0;
+}
+
+.dataTables_wrapper .dt-buttons {
+  margin-bottom: 1rem;
+}
+
+.dataTables_wrapper .dt-buttons .btn {
+  margin-right: 0.5rem;
 }
