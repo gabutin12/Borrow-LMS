@@ -7,7 +7,7 @@ require_once 'includes/navbar.php';
 
 <div class="wrapper">
     <?php require_once 'includes/sidebar.php'; ?>
-    <div class="main-content">
+    <div class="main-content-aboutus">
         <div class="container-fluid">
             <!-- Header Section -->
             <div class="mb-4">
@@ -19,7 +19,7 @@ require_once 'includes/navbar.php';
             </div>
             <!-- Library Kiosk Information Section -->
             <div class="kiosk-info mb-4">
-                <div class="card shadow-sm border-0" style="min-height: 520px;">    
+                <div class="card shadow-sm border-0" style="min-height: 520px;">
                     <div class="card-body p-4">
                         <h3 class="card-title text-primary mb-4">Library Front Desk Kiosk System</h3>
                         <p class="lead mb-4">

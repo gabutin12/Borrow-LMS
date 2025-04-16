@@ -132,12 +132,5 @@
                 </li>
             </ul>
         </li>
-
-        <!-- About
-        <li class="nav-header">
-            <span class="nav-header-text"></span>
-        </li> -->
-
-        <!-- End of Sidebar links -->
     </ul>
 </div>
