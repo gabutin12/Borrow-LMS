@@ -8,13 +8,17 @@
         <!-- Admin Profile and Logout -->
         <div class="d-flex align-items-center gap-3">
             <div class="d-flex align-items-center">
-                <img src="<?php echo isset($_SESSION['admin_image']) && !empty($_SESSION['admin_image']) 
-                    ? $_SESSION['admin_image'] 
-                    : 'images/default.jpg'; ?>" 
-                     alt="Admin" 
-                     class="rounded-circle me-2"
-                     style="width: 40px; height: 40px; object-fit: cover;">
-                <span class="fw-medium me-3"><?php echo isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : 'Admin'; ?></span>
+            <img src="<?php echo isset($_SESSION['admin_image']) && !empty($_SESSION['admin_image']) 
+                ? $_SESSION['admin_image'] 
+                : 'images/default.jpg'; ?>" 
+                 alt="Admin" 
+                 class="rounded-circle me-2"
+                 style="width: 40px; height: 40px; object-fit: cover;">
+            <span class="fw-medium me-2"><?php echo isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : 'Admin'; ?></span>
+            <img src="images/verified/verify.png" 
+                 alt="Verified" 
+                 style="width: 20px; height: 20px;"
+                 class="me-3">
             </div>
             <div class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">
                 <a href="logout.php" class="nav-link">

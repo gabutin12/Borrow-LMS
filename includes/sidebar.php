@@ -6,10 +6,15 @@
                 <img src="images/default.jpg" class="rounded-circle shadow-sm" width="45" height="45" alt="Profile">
                 <span class="position-absolute bottom-0 end-0 p-1 bg-success border border-light rounded-circle"></span>
             </div>
-            <div class="ms-3">
-                <h6 class="text-white mb-0 fw-semibold"><?php echo htmlspecialchars($_SESSION['username']); ?></h6>
-                <small class="text-success">Active Now</small>
-            </div>
+                <div class="ms-3">
+                    <div class="d-flex align-items-center">
+                        <h6 class="text-white mb-0 fw-semibold"><?php echo htmlspecialchars($_SESSION['username']); ?></h6>
+                        <img src="images/verified/verify.png" alt="Verified" class="ms-1" style="width: 15px; height: 15px;">
+                    </div>
+                    <div class="d-block">
+                        <small class="text-success">Active Now</small>
+                    </div>
+                </div>
         </div>
     </div>
 

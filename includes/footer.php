@@ -5,6 +5,7 @@
                 <strong>Library Management System</strong>
             </div>
             <div class="footer-links">
+                <a href="#">Blog</a>
                 <a href="#">Contact</a>
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
