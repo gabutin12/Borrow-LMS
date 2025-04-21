@@ -15,9 +15,9 @@
                  class="rounded-circle me-2"
                  style="width: 40px; height: 40px; object-fit: cover;">
             <span class="fw-medium me-2"><?php echo isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : 'Admin'; ?></span>
-            <img src="images/verified/verify.png" 
+            <img src="images/verified/verified-fb2.png" 
                  alt="Verified" 
-                 style="width: 20px; height: 20px;"
+                 style="width: 24px; height: 24px;"
                  class="me-3">
             </div>
             <div class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">

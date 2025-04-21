@@ -9,7 +9,7 @@
             <div class="ms-3">
                 <div class="d-flex align-items-center">
                     <h6 class="text-white mb-0 fw-semibold"><?php echo htmlspecialchars($_SESSION['username']); ?></h6>
-                    <img src="images/verified/verify.png" alt="Verified" class="ms-1" style="width: 15px; height: 15px;">
+                    <img src="images/verified/verified-fb2.png" alt="Verified" class="ms-1" style="width: 24px; height: 24px;">
                 </div>
                 <div class="d-block">
                     <small class="text-success">Active Now</small>
