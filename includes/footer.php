@@ -30,7 +30,7 @@
         width: 100%;
         height: 90px;
         background-color: #fff;
-        color: #0d6efd;
+        color: #212121;
         ;
         padding: 15px 0;
         text-align: center;

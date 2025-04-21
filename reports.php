@@ -4,6 +4,13 @@ $page_title = "Reports";
 require_once 'includes/header.php';
 require_once 'includes/navbar.php';
 require_once 'db_connection.php';
+
+// Fetch settings from database
+$settings_query = "SELECT fine_amount, max_borrow_days FROM system_settings WHERE id = 1";
+$settings_result = mysqli_query($conn, $settings_query);
+$settings = mysqli_fetch_assoc($settings_result);
+$fine_amount = $settings['fine_amount'];
+$max_borrow_days = $settings['max_borrow_days'];
 ?>
 
 <div class="wrapper">
@@ -79,21 +86,30 @@ require_once 'db_connection.php';
                                             <th>Due Date</th>
                                             <th>Status</th>
                                             <th>Days Late</th>
+                                            <th>Fine (₱)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $query = "SELECT bb.*, s.firstname, s.lastname, b.title,
-                                                 DATEDIFF(CURRENT_DATE, bb.due_date) as days_late
-                                                 FROM borrowed_books bb
-                                                 LEFT JOIN students s ON bb.student_id = s.student_id
-                                                 LEFT JOIN books b ON bb.book_isbn = b.isbn
-                                                 WHERE bb.status = 'Borrowed'
-                                                 ORDER BY bb.borrow_date DESC";
+                                                DATE_ADD(bb.borrow_date, INTERVAL $max_borrow_days DAY) as due_date,
+                                                DATEDIFF(CURRENT_DATE, DATE_ADD(bb.borrow_date, INTERVAL $max_borrow_days DAY)) as days_late,
+                                                CASE 
+                                                    WHEN DATEDIFF(CURRENT_DATE, DATE_ADD(bb.borrow_date, INTERVAL $max_borrow_days DAY)) > 0 
+                                                    THEN DATEDIFF(CURRENT_DATE, DATE_ADD(bb.borrow_date, INTERVAL $max_borrow_days DAY)) * $fine_amount
+                                                    ELSE 0 
+                                                END as fine_amount
+                                                FROM borrowed_books bb
+                                                LEFT JOIN students s ON bb.student_id = s.student_id
+                                                LEFT JOIN books b ON bb.book_isbn = b.isbn
+                                                WHERE bb.status = 'Borrowed'
+                                                ORDER BY bb.borrow_date DESC";
                                         $result = mysqli_query($conn, $query);
                                         while ($row = mysqli_fetch_assoc($result)) {
                                             $days_late = max(0, $row['days_late']);
                                             $status_class = $days_late > 0 ? 'text-danger' : 'text-warning';
+                                            $fine = $days_late * $fine_amount;
+
                                             echo "<tr>";
                                             echo "<td>" . htmlspecialchars($row['student_id']) . "</td>";
                                             echo "<td>" . htmlspecialchars($row['lastname'] . ', ' . $row['firstname']) . "</td>";
@@ -103,6 +119,7 @@ require_once 'db_connection.php';
                                             echo "<td>" . date('M d, Y', strtotime($row['due_date'])) . "</td>";
                                             echo "<td class='{$status_class} fw-bold'>" . ($days_late > 0 ? 'Overdue' : 'Borrowed') . "</td>";
                                             echo "<td>" . ($days_late > 0 ? $days_late : '-') . "</td>";
+                                            echo "<td class='text-end'>" . ($fine > 0 ? number_format($fine, 2) : '-') . "</td>";
                                             echo "</tr>";
                                         }
                                         ?>
@@ -137,20 +154,27 @@ require_once 'db_connection.php';
                                             <th>Due Date</th>
                                             <th>Return Date</th>
                                             <th>Return Status</th>
+                                            <th>Fine (₱)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $query = "SELECT bb.*, s.firstname, s.lastname, b.title,
-                                                 CASE 
-                                                    WHEN bb.return_date <= bb.due_date THEN 'On Time'
-                                                    ELSE 'Late'
-                                                 END as return_status
-                                                 FROM borrowed_books bb
-                                                 LEFT JOIN students s ON bb.student_id = s.student_id
-                                                 LEFT JOIN books b ON bb.book_isbn = b.isbn
-                                                 WHERE bb.status = 'Returned'
-                                                 ORDER BY bb.return_date DESC";
+                                                    DATE_ADD(bb.borrow_date, INTERVAL $max_borrow_days DAY) as due_date,
+                                                    CASE 
+                                                        WHEN bb.return_date <= DATE_ADD(bb.borrow_date, INTERVAL $max_borrow_days DAY) THEN 'On Time'
+                                                        ELSE 'Late'
+                                                    END as return_status,
+                                                    CASE 
+                                                        WHEN bb.return_date > DATE_ADD(bb.borrow_date, INTERVAL $max_borrow_days DAY)
+                                                        THEN DATEDIFF(bb.return_date, DATE_ADD(bb.borrow_date, INTERVAL $max_borrow_days DAY)) * $fine_amount
+                                                        ELSE 0 
+                                                    END as fine_amount
+                                                    FROM borrowed_books bb
+                                                    LEFT JOIN students s ON bb.student_id = s.student_id
+                                                    LEFT JOIN books b ON bb.book_isbn = b.isbn
+                                                    WHERE bb.status = 'Returned'
+                                                    ORDER BY bb.return_date DESC";
                                         $result = mysqli_query($conn, $query);
                                         while ($row = mysqli_fetch_assoc($result)) {
                                             $status_class = $row['return_status'] === 'Late' ? 'text-danger' : 'text-success';
@@ -163,6 +187,7 @@ require_once 'db_connection.php';
                                             echo "<td>" . date('M d, Y', strtotime($row['due_date'])) . "</td>";
                                             echo "<td>" . date('M d, Y', strtotime($row['return_date'])) . "</td>";
                                             echo "<td class='{$status_class} fw-bold'>" . $row['return_status'] . "</td>";
+                                            echo "<td class='text-end'>" . ($row['fine_amount'] > 0 ? number_format($row['fine_amount'], 2) : '-') . "</td>";
                                             echo "</tr>";
                                         }
                                         ?>
@@ -197,24 +222,30 @@ require_once 'db_connection.php';
                                             <th>Total Returned</th>
                                             <th>On-Time Returns</th>
                                             <th>Late Returns</th>
+                                            <th>Total Fines (₱)</th> <!-- New column -->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $query = "SELECT 
-                                                    s.student_id,
-                                                    s.firstname,
-                                                    s.lastname,
-                                                    s.course,
-                                                    COUNT(bb.id) as total_borrowed,
-                                                    SUM(CASE WHEN bb.status = 'Borrowed' THEN 1 ELSE 0 END) as currently_borrowed,
-                                                    SUM(CASE WHEN bb.status = 'Returned' THEN 1 ELSE 0 END) as total_returned,
-                                                    SUM(CASE WHEN bb.status = 'Returned' AND bb.return_date <= bb.due_date THEN 1 ELSE 0 END) as ontime_returns,
-                                                    SUM(CASE WHEN bb.status = 'Returned' AND bb.return_date > bb.due_date THEN 1 ELSE 0 END) as late_returns
-                                                FROM students s
-                                                LEFT JOIN borrowed_books bb ON s.student_id = bb.student_id
-                                                GROUP BY s.student_id
-                                                ORDER BY total_borrowed DESC";
+                                            s.student_id,
+                                            s.firstname,
+                                            s.lastname,
+                                            s.course,
+                                            COUNT(bb.id) as total_borrowed,
+                                            SUM(CASE WHEN bb.status = 'Borrowed' THEN 1 ELSE 0 END) as currently_borrowed,
+                                            SUM(CASE WHEN bb.status = 'Returned' THEN 1 ELSE 0 END) as total_returned,
+                                            SUM(CASE WHEN bb.status = 'Returned' AND bb.return_date <= DATE_ADD(bb.borrow_date, INTERVAL $max_borrow_days DAY) THEN 1 ELSE 0 END) as ontime_returns,
+                                            SUM(CASE WHEN bb.status = 'Returned' AND bb.return_date > DATE_ADD(bb.borrow_date, INTERVAL $max_borrow_days DAY) THEN 1 ELSE 0 END) as late_returns,
+                                            SUM(CASE 
+                                                WHEN bb.status = 'Returned' AND bb.return_date > DATE_ADD(bb.borrow_date, INTERVAL $max_borrow_days DAY)
+                                                THEN DATEDIFF(bb.return_date, DATE_ADD(bb.borrow_date, INTERVAL $max_borrow_days DAY)) * $fine_amount
+                                                ELSE 0 
+                                            END) as total_fines
+                                        FROM students s
+                                        LEFT JOIN borrowed_books bb ON s.student_id = bb.student_id
+                                        GROUP BY s.student_id
+                                        ORDER BY total_borrowed DESC";
                                         $result = mysqli_query($conn, $query);
                                         while ($row = mysqli_fetch_assoc($result)) {
                                             echo "<tr>";
@@ -226,6 +257,7 @@ require_once 'db_connection.php';
                                             echo "<td>" . $row['total_returned'] . "</td>";
                                             echo "<td class='text-success'>" . $row['ontime_returns'] . "</td>";
                                             echo "<td class='text-danger'>" . $row['late_returns'] . "</td>";
+                                            echo "<td class='text-end'>" . ($row['total_fines'] > 0 ? number_format($row['total_fines'], 2) : '-') . "</td>";
                                             echo "</tr>";
                                         }
                                         ?>
@@ -280,6 +312,25 @@ require_once 'db_connection.php';
                 }
             ]
         });
+
+        // Add settings refresh functionality
+        function checkSettings() {
+            fetch('get_current_settings.php')
+                .then(response => response.json())
+                .then(data => {
+                    const currentFine = <?php echo $fine_amount; ?>;
+                    const currentMaxDays = <?php echo $max_borrow_days; ?>;
+
+                    if (data.fine_amount != currentFine || data.max_borrow_days != currentMaxDays) {
+                        console.log('Settings changed, refreshing page...');
+                        location.reload();
+                    }
+                })
+                .catch(error => console.error('Error checking settings:', error));
+        }
+
+        // Check settings every 3 seconds
+        setInterval(checkSettings, 3000);
     });
 
     // Updated Print report function
@@ -350,3 +401,4 @@ require_once 'db_connection.php';
 <?php require_once 'includes/footer.php'; ?>
 
 </html>
+````
