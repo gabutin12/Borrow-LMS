@@ -242,14 +242,14 @@ h6,
   padding-top: 0.5rem;
 }
 
-/* Main Content */
+/* Main Content Styles */
 .main-content {
-  width: 85%;
+  flex: 1;
   margin-left: 15%;
-  padding: 20px;
-  margin-top: 56px;
-  min-height: calc(100vh - 56px);
-  background-color: #f8f9fa;
+  padding: 2rem;
+  background: #f8f9fa;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
 }
 
 /* Sidebar Navigation */

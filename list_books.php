@@ -87,7 +87,7 @@ require_once 'db_connection.php';
 
                             echo "<tr>";
                             echo "<td>" . $index . "</td>";
-                            echo "<td><img src='" . htmlspecialchars($row['picture']) . "' class='rounded' width='40' height='50' alt='Book Cover'></td>";
+                            echo "<td><img src='" . htmlspecialchars($row['picture']) . "' class='rounded' width='60' height='70' alt='Book Cover'></td>";
                             echo "<td>" . htmlspecialchars($row['isbn']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['title']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['author']) . "</td>";
