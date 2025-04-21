@@ -6,15 +6,15 @@
                 <img src="images/default.jpg" class="rounded-circle shadow-sm" width="45" height="45" alt="Profile">
                 <span class="position-absolute bottom-0 end-0 p-1 bg-success border border-light rounded-circle"></span>
             </div>
-                <div class="ms-3">
-                    <div class="d-flex align-items-center">
-                        <h6 class="text-white mb-0 fw-semibold"><?php echo htmlspecialchars($_SESSION['username']); ?></h6>
-                        <img src="images/verified/verify.png" alt="Verified" class="ms-1" style="width: 15px; height: 15px;">
-                    </div>
-                    <div class="d-block">
-                        <small class="text-success">Active Now</small>
-                    </div>
+            <div class="ms-3">
+                <div class="d-flex align-items-center">
+                    <h6 class="text-white mb-0 fw-semibold"><?php echo htmlspecialchars($_SESSION['username']); ?></h6>
+                    <img src="images/verified/verify.png" alt="Verified" class="ms-1" style="width: 15px; height: 15px;">
                 </div>
+                <div class="d-block">
+                    <small class="text-success">Active Now</small>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -107,7 +107,7 @@
             <ul class="collapse nav flex-column ms-4 <?php echo ($page_title == 'Settings' || $page_title == 'Admin Management' || $page_title == 'Reports' || $page_title == 'Change Password' || $page_title == 'About Us') ? 'show' : ''; ?>" id="settingsDropdown">
                 <li class="nav-item">
                     <a href="settings.php" class="nav-link <?php echo ($page_title == 'Settings') ? 'active' : ''; ?>">
-                        <i class="bi bi-sliders"></i> System Settings
+                        <i class="bi bi-sliders"></i> Settings Management
                     </a>
                 </li>
                 <li class="nav-item">
