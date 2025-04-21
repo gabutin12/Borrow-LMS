@@ -26,7 +26,7 @@
         position: fixed;
         bottom: 0;
         width: 100%;
-        height: 80px;
+        height: 90px;
         background-color: #fff;
         color: #0d6efd;
         ;
