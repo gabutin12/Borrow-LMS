@@ -17,11 +17,11 @@ $max_borrow_days = $settings_row['max_borrow_days'];
     <div class="main-content-students p-4">
         <!-- Header Section -->
         <div class="mb-4">
-            <h4 class="mb-3">
+            <h6 class="mb-3">
                 <a href="borrow.php" class="text-decoration-none text-primary">Borrow Books</a>
                 <i class="bi bi-chevron-right small"></i>
                 Borrowed Books Logs
-            </h4>
+            </h6>
         </div>
 
         <!-- Display Current Settings

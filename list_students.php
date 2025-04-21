@@ -55,11 +55,11 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
 
         <!-- Header Section -->
         <div class="mb-4">
-            <h4 class="mb-3">
+            <h6 class="mb-3">
                 <a href="dashboard.php" class="text-decoration-none text-primary">Dashboard</a>
                 <i class="bi bi-chevron-right small"></i>
                 List of Students
-            </h4>
+            </h6>
             <button class="btn btn-primary mb-3">
                 <i class="bi bi-plus"></i> New
             </button>
@@ -90,7 +90,7 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($row['course']) . "</td>";
-                            echo "<td><img src='" . htmlspecialchars($row['photo']) . "' class='rounded-circle' width='40' height='40' alt='Student Photo'></td>";
+                            echo "<td><img src='" . htmlspecialchars($row['photo']) . "' class='rounded-circle' width='60' height='70' alt='Student Photo style='display: block; margin-left: auto; margin-right: auto;'></td>";
                             echo "<td>" . htmlspecialchars($row['student_id']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['firstname']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['lastname']) . "</td>";

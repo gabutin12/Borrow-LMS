@@ -46,11 +46,11 @@ require_once 'db_connection.php';
 
         <!-- Header Section -->
         <div class="mb-4">
-            <h4 class="mb-3">
+            <h6 class="mb-3">
                 <a href="dashboard.php" class="text-decoration-none text-primary">Dashboard</a>
                 <i class="bi bi-chevron-right small"></i>
                 List of Books
-            </h4>
+            </h6>
             <button class="btn btn-primary mb-3">
                 <i class="bi bi-plus"></i> New
             </button>
@@ -87,7 +87,7 @@ require_once 'db_connection.php';
 
                             echo "<tr>";
                             echo "<td>" . $index . "</td>";
-                            echo "<td><img src='" . htmlspecialchars($row['picture']) . "' class='rounded' width='40' height='50' alt='Book Cover'></td>";
+                            echo "<td><img src='" . htmlspecialchars($row['picture']) . "' class='rounded' width='60' height='70' alt='Book Cover'></td>";
                             echo "<td>" . htmlspecialchars($row['isbn']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['title']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['author']) . "</td>";

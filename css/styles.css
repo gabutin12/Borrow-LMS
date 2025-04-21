@@ -242,14 +242,14 @@ h6,
   padding-top: 0.5rem;
 }
 
-/* Main Content */
+/* Main Content Styles */
 .main-content {
-  width: 85%;
+  flex: 1;
   margin-left: 15%;
-  padding: 20px;
-  margin-top: 56px;
-  min-height: calc(100vh - 56px);
-  background-color: #f8f9fa;
+  padding: 2rem;
+  background: #f8f9fa;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
 }
 
 /* Sidebar Navigation */
@@ -1235,7 +1235,6 @@ Kiosk Information Dropdown Styles */ .dropdown-box {
 /* Override any Bootstrap default styles */
 .bg-primary {
   background-color: #0a2558;
-<<<<<<< HEAD
 }
 
 .main-content-settings {
@@ -1263,6 +1262,60 @@ Kiosk Information Dropdown Styles */ .dropdown-box {
   background: #f8f9fa;
   height: calc(100vh - 56px);
   overflow-y: auto;
-=======
->>>>>>> aed5f6706df73a1664d50af4b41b2636ac4110b4
+}
+
+.main-content-reports {
+  flex: 1;
+  margin-left: 15%;
+  padding: 2rem;
+  background: #f8f9fa;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+/* Settings Page Styles */
+.settings-card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.settings-header {
+  background-color: #0a2558;
+  color: white;
+  padding: 1.25rem;
+  border-bottom: 0;
+}
+
+.settings-body {
+  padding: 1.5rem;
+  background-color: #fff;
+}
+
+.setting-item label {
+  color: #0a2558;
+  margin-bottom: 0.5rem;
+}
+
+.btn-settings {
+  background-color: #0a2558;
+  border-color: #0a2558;
+  padding: 0.6rem 1.25rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-settings:hover {
+  background-color: #0d2d6d;
+  border-color: #0d2d6d;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.input-group-text {
+  color: #0a2558;
+}
+
+.form-control:focus {
+  border-color: #0a2558;
+  box-shadow: 0 0 0 0.2rem rgba(10, 37, 88, 0.15);
 }

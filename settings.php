@@ -17,111 +17,113 @@ $max_borrow_days = $settings['max_borrow_days'] ?? 7;
 
 <div class="wrapper">
     <?php require_once 'includes/sidebar.php'; ?>
-    <div class="main-content-settings">
-        <!-- Error/Success Messages -->
-        <div class="container-fluid">
-            <?php if (isset($_SESSION['message'])): ?>
-                <div class="alert alert-<?php echo $_SESSION['message_type']; ?> alert-dismissible fade show" role="alert">
-                    <?php if ($_SESSION['message_type'] == 'success'): ?>
-                        <i class="bi bi-check-circle-fill me-2"></i>
-                    <?php else: ?>
-                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                    <?php endif; ?>
-                    <?php
-                    echo $_SESSION['message'];
-                    unset($_SESSION['message']);
-                    unset($_SESSION['message_type']);
-                    ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            <?php endif; ?>
+    <div class="main-content-settings p-4">
+        <!-- Header Section -->
+        <div class="mb-4">
+            <h6 class="mb-3">
+                <a href="dashboard.php" class="text-decoration-none text-primary">Dashboard</a>
+                <i class="bi bi-chevron-right small"></i>
+                Settings Management
+            </h6>
         </div>
 
-        <div class="container-fluid">
-            <!-- Header Section -->
-            <div class="mb-4">
-                <h4 class="mb-3">
-                    <a href="dashboard.php" class="text-decoration-none text-primary">Dashboard</a>
-                    <i class="bi bi-chevron-right small"></i>
-                    Settings
-                </h4>
-            </div>
-
-            <div class="row">
-                <!-- System Settings -->
-                <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="card-title mb-0">
-                                <i class="bi bi-gear-fill me-2"></i>System Settings
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            <form id="fineSettingsForm" method="POST" action="update_settings.php">
-                                <div class="mb-3">
-                                    <label for="fineAmount" class="form-label">Late Return Fine (₱/day)</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">₱</span>
-                                        <input type="number"
-                                            class="form-control"
-                                            id="fineAmount"
-                                            name="fineAmount"
-                                            value="<?php echo htmlspecialchars($fine_amount); ?>"
-                                            min="0"
-                                            step="1"
-                                            required>
-                                    </div>
-                                    <small class="text-muted">Current fine rate: ₱<?php echo number_format($fine_amount, 2); ?> per day</small>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="maxBorrowDays" class="form-label">Maximum Borrow Duration (Days)</label>
+        <div class="row">
+            <!-- Borrow Settings -->
+            <div class="col-md-6 mb-4">
+                <div class="card settings-card shadow-sm border-0">
+                    <div class="card-header settings-header">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-book-half me-2"></i>Borrow Settings
+                        </h5>
+                        <!-- <small class="text-muted">Configure borrowing rules and fines</small> -->
+                    </div>
+                    <div class="card-body settings-body">
+                        <form id="fineSettingsForm" method="POST" action="update_settings.php">
+                            <div class="setting-item mb-4">
+                                <label for="fineAmount" class="form-label fw-semibold">Late Return Fine (₱/day)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text border-primary bg-light">₱</span>
                                     <input type="number"
-                                        class="form-control"
+                                        class="form-control border-primary"
+                                        id="fineAmount"
+                                        name="fineAmount"
+                                        value="<?php echo htmlspecialchars($fine_amount); ?>"
+                                        min="0"
+                                        step="1"
+                                        required>
+                                </div>
+                                <small class="text-muted mt-2 d-block">
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    Current fine rate: ₱<?php echo number_format($fine_amount, 2); ?> per day
+                                </small>
+                            </div>
+                            <div class="setting-item mb-4">
+                                <label for="maxBorrowDays" class="form-label fw-semibold">Maximum Borrow Duration</label>
+                                <div class="input-group">
+                                    <input type="number"
+                                        class="form-control border-primary"
                                         id="maxBorrowDays"
                                         name="maxBorrowDays"
                                         value="<?php echo htmlspecialchars($max_borrow_days); ?>"
                                         min="1"
                                         required>
+                                    <span class="input-group-text border-primary bg-light">Days</span>
                                 </div>
-                                <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="bi bi-save me-2"></i>Save Changes
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-settings">
+                                    <i class="bi bi-save me-2"></i>Update Settings
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
+            </div>
 
-                <!-- Admin Settings -->
-                <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="card-title mb-0">
-                                <i class="bi bi-shield-lock-fill me-2"></i>Admin Settings
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            <form id="adminSettingsForm" method="POST" action="update_admin.php">
-                                <div class="mb-3">
-                                    <label for="currentPassword" class="form-label">Current Password</label>
-                                    <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
+            <!-- Admin Settings -->
+            <div class="col-md-6 mb-4">
+                <div class="card settings-card shadow-sm border-0">
+                    <div class="card-header settings-header">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-shield-lock me-2"></i>Admin Security
+                        </h5>
+                        <!-- <small class="text-muted">Manage administrator password</small> -->
+                    </div>
+                    <div class="card-body settings-body">
+                        <form id="adminSettingsForm" method="POST" action="update_admin.php">
+                            <div class="setting-item mb-3">
+                                <label for="currentPassword" class="form-label fw-semibold">Current Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text border-primary bg-light">
+                                        <i class="bi bi-key"></i>
+                                    </span>
+                                    <input type="password" class="form-control border-primary" id="currentPassword" name="currentPassword" required>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="newPassword" class="form-label">New Password</label>
-                                    <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                            </div>
+                            <div class="setting-item mb-3">
+                                <label for="newPassword" class="form-label fw-semibold">New Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text border-primary bg-light">
+                                        <i class="bi bi-lock"></i>
+                                    </span>
+                                    <input type="password" class="form-control border-primary" id="newPassword" name="newPassword" required>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="confirmPassword" class="form-label">Confirm New Password</label>
-                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                            </div>
+                            <div class="setting-item mb-4">
+                                <label for="confirmPassword" class="form-label fw-semibold">Confirm New Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text border-primary bg-light">
+                                        <i class="bi bi-lock-fill"></i>
+                                    </span>
+                                    <input type="password" class="form-control border-primary" id="confirmPassword" name="confirmPassword" required>
                                 </div>
-                                <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="bi bi-key-fill me-2"></i>Change Password
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-settings">
+                                    <i class="bi bi-shield-check me-2"></i>Change Password
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

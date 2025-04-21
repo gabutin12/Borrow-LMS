@@ -8,15 +8,15 @@ require_once 'db_connection.php';
 
 <div class="wrapper">
     <?php require_once 'includes/sidebar.php'; ?>
-    <div class="main-content">
+    <div class="main-content-reports">
         <div class="container-fluid">
             <!-- Header Section -->
             <div class="mb-4">
-                <h4 class="mb-3">
+                <h6 class="mb-3">
                     <a href="dashboard.php" class="text-decoration-none text-primary">Dashboard</a>
                     <i class="bi bi-chevron-right small"></i>
                     Reports
-                </h4>
+                </h6>
             </div>
 
             <!-- Report Types Tabs -->
