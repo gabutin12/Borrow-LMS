@@ -41,9 +41,6 @@ require_once 'db_connection.php';
                 <i class="bi bi-chevron-right small"></i>
                 Borrow Books
             </h6>
-            <button class="btn btn-primary mb-3">
-                <i class="bi bi-plus"></i> New
-            </button>
         </div>
 
         <!-- Borrow Form -->

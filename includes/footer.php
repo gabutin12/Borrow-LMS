@@ -21,6 +21,8 @@
         <p>&copy; <?php echo date("Y"); ?> LMS. All rights reserved.</p>
     </div>
 </div>
+
+</div>
 <style>
     .footer {
         position: fixed;
@@ -71,6 +73,7 @@
         margin-top: 20px;
         font-size: 14px;
         margin-left: 200px;
+        color: #212121;
     }
 
     .book-card {

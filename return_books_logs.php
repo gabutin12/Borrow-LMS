@@ -134,7 +134,10 @@ $max_borrow_days = $settings_row['max_borrow_days'];
                 null, // Return Date
                 null, // Status
                 {
-                    className: 'text-end'
+                    className: 'text-end',
+                    render: function(data, type, row) {
+                        return type === 'display' && data !== '-' ? '₱' + parseFloat(data).toFixed(2) : data;
+                    }
                 } // Fine amount
             ]
         });

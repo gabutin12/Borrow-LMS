@@ -293,7 +293,10 @@ require_once 'db_connection.php';
                     searchable: false
                 }
             ],
-            dom: '<"top"lf>rt<"bottom"ip>',
+            // Update the dom configuration to match category.php
+            dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
             buttons: []
         });
 
