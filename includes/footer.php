@@ -5,10 +5,10 @@
             <strong>Library Management System</strong>
         </div>
         <div class="footer-links">
-            <a href="#">Blog</a>
-            <a href="#">Contact</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
+            <a href="./includes/footer/blog.php">Blog</a>
+            <a href="./includes/footer/contact.php">Contact</a>
+            <a href="./includes/footer/privacy.php">Privacy Policy</a>
+            <a href="./includes/footer/terms.php">Terms of Service</a>
         </div>
         <div class="footer-social">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
