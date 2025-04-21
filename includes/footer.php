@@ -30,7 +30,8 @@
         width: 100%;
         height: 90px;
         background-color: #fff;
-        color: #212121;
+        color: #0d6efd;
+        ;
         padding: 15px 0;
         text-align: center;
         box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
