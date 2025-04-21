@@ -120,11 +120,12 @@
                         <i class="bi bi-file-earmark-text"></i> Reports
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- change_password.php -->
+                <!-- <li class="nav-item">
                     <a href="change_password.php" class="nav-link <?php echo ($page_title == 'Change Password') ? 'active' : ''; ?>">
                         <i class="bi bi-key"></i> Change Password
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="about.php" class="nav-link <?php echo ($page_title == 'About Us') ? 'active' : ''; ?>">
                         <i class="bi bi-info-circle"></i> About us

@@ -26,9 +26,9 @@
             position: fixed;
             bottom: 0;
             width: 100%;
-            height: 90px;
+            height: 95px;
             background-color: #fff;
-            color: #0d6efd;;
+            color: #212121;
             padding: 15px 0;
             text-align: center;
             box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
@@ -44,14 +44,14 @@
         }
 
         .footer-logo img {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             margin-left: 200px;
         }
 
         .footer-links a {
-            color: #0d6efd;
+            color: #212121;
             text-decoration: none;
             margin: 0 10px;
         }
@@ -61,9 +61,9 @@
         }
 
         .footer-social a {
-            color: #0d6efd;
+            color: #212121;
             margin: 0 10px;
-            font-size: 20px;
+            font-size: 14px;
         }
 
         .footer-bottom {
