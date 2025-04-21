@@ -1,28 +1,8 @@
 <div class="footer">
-<<<<<<< HEAD
     <div class="footer-content">
         <div class="footer-logo">
             <img src="./images/top_logo.ico" alt="LMS Logo">
             <strong>Library Management System</strong>
-=======
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="./images/top_logo.ico" alt="LMS Logo">
-                <strong>Library Management System</strong>
-            </div>
-            <div class="footer-links">
-                <a href="./includes/footer/blog.php">Blog</a>
-                <a href="./includes/footer/contact.php">Contact</a>
-                <a href="./includes/footer/privacy.php">Privacy Policy</a>
-                <a href="./includes/footer/terms.php">Terms of Service</a>
-            </div>
-            <div class="footer-social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
->>>>>>> a6fd085d6780f912b522db8e46b12d41ad066b18
         </div>
         <div class="footer-links">
             <a href="#">Blog</a>
@@ -48,7 +28,7 @@
         width: 100%;
         height: 90px;
         background-color: #fff;
-        color: #0d6efd;
+        color: #212121;
         ;
         padding: 15px 0;
         text-align: center;
@@ -72,7 +52,7 @@
     }
 
     .footer-links a {
-        color: #0d6efd;
+        color: #212121;
         text-decoration: none;
         margin: 0 10px;
     }
@@ -82,7 +62,7 @@
     }
 
     .footer-social a {
-        color: #0d6efd;
+        color: #212121;
         margin: 0 10px;
         font-size: 20px;
     }
