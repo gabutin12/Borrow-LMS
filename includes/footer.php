@@ -30,7 +30,7 @@
         width: 100%;
         height: 90px;
         background-color: #fff;
-        color: #212121;
+        color: #0a2558;
         ;
         padding: 15px 0;
         text-align: center;
@@ -54,7 +54,7 @@
     }
 
     .footer-links a {
-        color: #212121;
+        color: #0a2558;
         text-decoration: none;
         margin: 0 10px;
     }
@@ -64,7 +64,7 @@
     }
 
     .footer-social a {
-        color: #212121;
+        color: #0a2558;
         margin: 0 10px;
         font-size: 20px;
     }
