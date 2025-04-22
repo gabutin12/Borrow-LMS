@@ -77,7 +77,9 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                         <th>Lastname</th>
                         <th>Mobile No.</th>
                         <th>Gender</th>
+                        <th>Year Level</th>
                         <th>Date Registered</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -90,13 +92,16 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($row['course']) . "</td>";
-                            echo "<td><img src='" . htmlspecialchars($row['photo']) . "' class='rounded-circle' width='60' height='60' alt='Student Photo style='display: block; margin-left: auto; margin-right: auto;'></td>";
+                            echo "<td><img src='" . htmlspecialchars($row['photo']) . "' class='rounded-circle' width='60' height='70' alt='Student Photo style='display: block; margin-left: auto; margin-right: auto;'></td>";
                             echo "<td>" . htmlspecialchars($row['student_id']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['firstname']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['lastname']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['mobile_no']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['gender']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['year_level']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['formatted_date']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['status']) . "</td>";
+                            // Action buttons
                             echo "<td>
                         <button class='btn btn-success btn-sm edit-btn' data-id='" . htmlspecialchars($row['student_id']) . "'>
                             <i class='bi bi-pencil'></i> Edit
@@ -153,6 +158,16 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                             <input type="text" name="mobile_no" class="form-control" required>
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Year Level</label>
+                            <select name="year_level" class="form-select" required>
+                                <option value="">Select Year Level</option>
+                                <option value="1st Year">1st Year</option>
+                                <option value="2nd Year">2nd Year</option>
+                                <option value="3rd Year">3rd Year</option>
+                                <option value="4th Year">4th Year</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Photo</label>
                             <input type="file" name="photo" class="form-control" accept="image/*">
                         </div>
@@ -184,6 +199,7 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                 </div>
                 <form id="editStudentForm" method="POST" action="actions/student_edit.php" enctype="multipart/form-data">
                     <input type="hidden" name="student_id" id="student_edit_id">
+                    <input type="hidden" name="current_photo" id="current_photo">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Course</label>
@@ -198,8 +214,11 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Photo</label>
+                            <label class="form-label">Current Photo</label>
+                            <img id="current_photo_preview" src="" alt="Current Photo" class="img-thumbnail mb-2" style="max-width: 100px; display: block;">
+                            <label class="form-label">Update Photo</label>
                             <input type="file" name="photo" class="form-control" accept="image/*">
+                            <small class="form-text text-muted">Leave empty to keep current photo</small>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">First Name</label>
@@ -212,6 +231,16 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                         <div class="mb-3">
                             <label class="form-label">Mobile No.</label>
                             <input type="text" name="mobile_no" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Year Level</label>
+                            <select name="year_level" class="form-select">
+                                <option value="">Select Year Level</option>
+                                <option value="1st Year">1st Year</option>
+                                <option value="2nd Year">2nd Year</option>
+                                <option value="3rd Year">3rd Year</option>
+                                <option value="4th Year">4th Year</option>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Gender</label>

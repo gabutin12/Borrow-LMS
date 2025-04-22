@@ -168,8 +168,6 @@ CREATE TABLE `returns` (
 
 --
 -- Table structure for table `students`
---
-
 CREATE TABLE `students` (
   `id` int(11) NOT NULL,
   `course` varchar(100) NOT NULL,
@@ -179,17 +177,19 @@ CREATE TABLE `students` (
   `lastname` varchar(100) NOT NULL,
   `mobile_no` varchar(15) NOT NULL,
   `gender` enum('Male','Female') NOT NULL,
-  `date_registered` timestamp NOT NULL DEFAULT current_timestamp()
+  `year_level` enum('1st Year','2nd Year','3rd Year','4th Year') NOT NULL,
+  `date_registered` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` enum('Active','Inactive') DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `course`, `photo`, `student_id`, `firstname`, `lastname`, `mobile_no`, `gender`, `date_registered`) VALUES
-(2, 'BSCS', 'images/default.jpg', 'EQX087593147', 'Jane', 'Smith', '09198765432', 'Female', '2025-04-04 07:12:03'),
-(6, 'BSCS', 'images/default.jpg', 'EQX0875936100', 'Jundela', 'Malazarte', '09198764151', 'Male', '2025-04-04 08:40:58'),
-(11, 'BSIT', 'images/students/EAX221770785.jpg', 'EAX221770785', 'Ryan', 'Gabutin', '09198764151', 'Male', '2025-04-10 02:48:25');
+INSERT INTO `students` (`id`, `course`, `photo`, `student_id`, `firstname`, `lastname`, `mobile_no`, `gender`, `year_level`, `date_registered`, `status`) VALUES
+(2, 'BSCS', 'images/default.jpg', 'EQX087593147', 'Jane', 'Smith', '09198765432', 'Female', '1st Year', '2025-04-04 07:12:03', 'Active'),
+(6, 'BSCS', 'images/default.jpg', 'EQX0875936100', 'Jundel', 'Malazarte', '09198764151', 'Male', '4th Year', '2025-04-04 08:40:58', 'Active'),
+(11, 'BSIT', 'images/default.jpg', 'EAX221770785', 'Ryan', 'Gabutin', '09198764151', 'Male', '4th Year', '2025-04-10 02:48:25', 'Active');
 
 -- --------------------------------------------------------
 
