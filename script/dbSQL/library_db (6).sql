@@ -189,7 +189,7 @@ CREATE TABLE `students` (
 INSERT INTO `students` (`id`, `course`, `photo`, `student_id`, `firstname`, `lastname`, `mobile_no`, `gender`, `year_level`, `date_registered`, `status`) VALUES
 (2, 'BSCS', 'images/default.jpg', 'EQX087593147', 'Jane', 'Smith', '09198765432', 'Female', '1st Year', '2025-04-04 07:12:03', 'Active'),
 (6, 'BSCS', 'images/default.jpg', 'EQX0875936100', 'Jundel', 'Malazarte', '09198764151', 'Male', '4th Year', '2025-04-04 08:40:58', 'Active'),
-(11, 'BSIT', 'images/students/EAX221770785.jpg', 'EAX221770785', 'Ryan', 'Gabutin', '09198764151', 'Male', '4th Year', '2025-04-10 02:48:25', 'Active');
+(11, 'BSIT', 'images/default.jpg', 'EAX221770785', 'Ryan', 'Gabutin', '09198764151', 'Male', '4th Year', '2025-04-10 02:48:25', 'Active');
 
 -- --------------------------------------------------------
 

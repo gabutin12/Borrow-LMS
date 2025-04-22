@@ -234,7 +234,7 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Year Level</label>
-                            <select name="year_level" class="form-select" required>
+                            <select name="year_level" class="form-select">
                                 <option value="">Select Year Level</option>
                                 <option value="1st Year">1st Year</option>
                                 <option value="2nd Year">2nd Year</option>
