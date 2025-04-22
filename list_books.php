@@ -52,7 +52,7 @@ require_once 'db_connection.php';
                 List of Books
             </h6>
             <button class="btn btn-primary mb-3">
-                <i class="bi bi-plus"></i> New
+                <i class="bi bi-plus"></i> New Book
             </button>
         </div>
 
