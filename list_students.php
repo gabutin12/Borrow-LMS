@@ -90,13 +90,14 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($row['course']) . "</td>";
-                            echo "<td><img src='" . htmlspecialchars($row['photo']) . "' class='rounded-circle' width='60' height='70' alt='Student Photo style='display: block; margin-left: auto; margin-right: auto;'></td>";
+                            echo "<td class='text-center'><img src='" . htmlspecialchars($row['photo']) . "' class='rounded-circle mx-auto d-block' width='60' height='60' alt='Student Photo'></td>";
                             echo "<td>" . htmlspecialchars($row['student_id']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['firstname']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['lastname']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['mobile_no']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['gender']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['formatted_date']) . "</td>";
+                            // Action buttons
                             echo "<td>
                         <button class='btn btn-success btn-sm edit-btn' data-id='" . htmlspecialchars($row['student_id']) . "'>
                             <i class='bi bi-pencil'></i> Edit
