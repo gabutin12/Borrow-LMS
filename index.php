@@ -19,22 +19,7 @@ if (isset($_SESSION['user_id']) || checkRememberMe($conn)) {
     <link rel="icon" href="images/top_logo.ico" type="image/x-icon" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <!-- font awesome icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Font Awesome CSS -->
-    <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Custom styling plus plugins -->
-    <link href="css/custom.css" rel="stylesheet">
-    <link href="css/icheck/flat/green.css" rel="stylesheet">
-    <!-- bootstrap js -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <!-- custom css -->
-    <link href="css/styles.css" rel="stylesheet"> 
     <style>
         body {
             background: linear-gradient(135deg, #f5f7fa 0%, #eceff1 100%);
@@ -56,7 +41,7 @@ if (isset($_SESSION['user_id']) || checkRememberMe($conn)) {
             padding: 40px;
             width: 100%;
             max-width: 400px;
-            text-align: center;
+            text-align: left;
         }
 
         .login-box h1 {
@@ -125,57 +110,50 @@ if (isset($_SESSION['user_id']) || checkRememberMe($conn)) {
     </style>
 </head>
 
-<body class="bg-light">
-    <div class="container">
-        <div class="row vh-100 align-items-center justify-content-center">
-            <div class="col-sm-12 col-md-8 col-lg-6 col-xl-4">
-                <div class="card shadow">
-                    <div class="card-body p-5">
-                        <h2 class="text-center mb-4">Library Management Login</h2>
-                        <div class="text-center mb-4">
-                            <img src="images/top_logo.ico" alt="Library Logo" class="img-fluid" style="max-width: 60px;">
-                        </div>
-                        <?php
-                        if (isset($_SESSION['error'])) {
-                            echo '<div class="alert alert-danger">' . htmlspecialchars($_SESSION['error']) . '</div>';
-                            unset($_SESSION['error']);
-                        }
-                        ?>
-                        <form id="loginForm" action="login_process.php" method="POST">
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                                <label class="form-check-label" for="remember">Remember Me</label>
-                            </div>
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </div>
-                            <div class="separator text-center">
-                                <div>
-                                    <h4><i class="fa fa-university"></i> College of Nursing</h4>
-                                    <h6>© <?php echo date('Y'); ?>  Library Management System</h6>
-                                </div>
-                            </div>
-                            <?php if (isset($error_msg)): ?>
-                                <div class="alert alert-danger">
-                                    <h3 class="blink_text"><?php echo htmlspecialchars($error_msg); ?></h3>
-                                </div>
-                            <?php endif; ?>
-                        </form>
+<body>
+    <div class="container-fluid login-container">
+        <div class="login-box">
+            <h2 class="text-center mb-4">Library Management Login</h2>
+            <div class="text-center mb-4">
+                <img src="images/top_logo.ico" alt="Library Logo" class="img-fluid" style="max-width: 60px;">
+            </div>
+            <?php
+            if (isset($_SESSION['error'])) {
+                echo '<div class="alert alert-danger">' . htmlspecialchars($_SESSION['error']) . '</div>';
+                unset($_SESSION['error']);
+            }
+            ?>
+            <form id="loginForm" action="login_process.php" method="POST">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                    <label class="form-check-label" for="remember">Remember Me</label>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+                <div class="separator text-center">
+                    <div>
+                        <h4><i class="fa fa-university"></i> College of Nursing</h4>
+                        <h6>© <?php echo date('Y'); ?> Library Management System</h6>
                     </div>
                 </div>
-            </div>
+                <?php if (isset($error_msg)): ?>
+                    <div class="alert alert-danger">
+                        <h3 class="blink_text"><?php echo htmlspecialchars($error_msg); ?></h3>
+                    </div>
+                <?php endif; ?>
+            </form>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
 </body>
 
 </html>

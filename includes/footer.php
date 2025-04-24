@@ -50,7 +50,7 @@
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        margin-left: 200px;
+        margin-left: 250px;
     }
 
     .footer-links a {
