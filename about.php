@@ -120,7 +120,7 @@ require_once 'includes/navbar.php';
                                 </div>
                             </div>
                             <div class="member-info">
-                                <h5>Team Member 1</h5>
+                                <h5>Ryan Gabutin</h5>
                                 <span>Project Manager</span>
                                 <p>Oversees project development and team coordination</p>
                             </div>
@@ -138,8 +138,8 @@ require_once 'includes/navbar.php';
                                 </div>
                             </div>
                             <div class="member-info">
-                                <h5>Team Member 2</h5>
-                                <span>Project Manager</span>
+                                <h5>Jundel Malazarte</h5>
+                                <span>Programmer</span>
                                 <p>Oversees project development and team coordination</p>
                             </div>
                         </div>
