@@ -51,6 +51,7 @@
         height: 50px;
         border-radius: 50%;
         margin-left: 250px;
+        font-size: 16px;
     }
 
     .footer-links a {

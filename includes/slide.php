@@ -15,9 +15,9 @@
 <style>
 .slider-container {
     width: 100%;
-	height: 800px; /* height for the slider */
+	height: 700px; /* height for the slider */
     overflow: hidden;
-    margin-top: 20px;\
+    margin-top: 20px;
 	position: relative;
 	display: flex;
 	justify-content: center;
