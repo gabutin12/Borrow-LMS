@@ -15,9 +15,16 @@
 <style>
 .slider-container {
     width: 100%;
-	height: 600px; /* Fixed height for the slider */
+	height: 800px; /* height for the slider */
     overflow: hidden;
-    margin-top: 20px;
+    margin-top: 20px;\
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f8f9fa; 
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #slidy-container {
