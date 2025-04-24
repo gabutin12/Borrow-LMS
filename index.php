@@ -131,9 +131,9 @@ if (isset($_SESSION['user_id']) || checkRememberMe($conn)) {
             <div class="col-sm-12 col-md-8 col-lg-6 col-xl-4">
                 <div class="card shadow">
                     <div class="card-body p-5">
-                        <h2 class="text-center mb-4">Library ManagementLogin</h2>
+                        <h2 class="text-center mb-4">Library Management Login</h2>
                         <div class="text-center mb-4">
-                            <img src="img/library-logo.png" alt="Library Logo" class="img-fluid" style="max-width: 150px;">
+                            <img src="images/top_logo.ico" alt="Library Logo" class="img-fluid" style="max-width: 60px;">
                         </div>
                         <?php
                         if (isset($_SESSION['error'])) {
