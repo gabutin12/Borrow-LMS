@@ -1,11 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
-    <div class="navbar-left d-flex align-items-center justify-content-center">
-        <span class="text-white fs-4 fw-bold">LMS</span>
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="navbar-left">
+        <a class="navbar-brand" href="#">
+            <i class="fa-solid fa-book-open-reader"></i>
+            <span class="ms-2">LMS</span>
+        </a>
     </div>
-    <div class="navbar-right bg-white d-flex align-items-center justify-content-between w-100">
-        <i class="fa-solid fa-bars" id="sidebarToggle"></i>
+    <div class="navbar-right">
+        <!-- Sidebar Toggle Button -->
+        <button id="sidebarToggle" class="btn btn-link">
+            <i class="fa-solid fa-bars"></i>
+        </button>
         
-        <!-- Admin Profile and Logout -->
+        <!-- Admin Profile -->
         <div class="d-flex align-items-center gap-3">
             <div class="d-flex align-items-center">
             <img src="<?php echo isset($_SESSION['admin_image']) && !empty($_SESSION['admin_image']) 

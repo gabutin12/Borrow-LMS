@@ -1,4 +1,4 @@
-<div class="sidebar" id="sidebarMenu" style="height: 100vh; display: flex; flex-direction: column;">
+<div class="sidebar" id="sidebarMenu">
     <!-- Profile Section -->
     <div class="profile-section shadow-sm bg-dark rounded">
         <div class="d-flex align-items-center p-3">
@@ -19,7 +19,7 @@
     </div>
 
     <!-- Navigation Links -->
-    <div class="sidebar-nav" style="overflow-y: auto; flex-grow: 1;">
+    <div class="sidebar-nav">
         <ul class="nav nav-pills flex-column shadow-sm">
             <!-- Reports Section -->
             <li class="nav-header mt-3">

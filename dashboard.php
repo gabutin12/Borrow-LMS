@@ -12,59 +12,19 @@ $total_books = $stats['total_books'];
 $total_students = $stats['total_students'];
 $returned_books = $stats['returned_books'];
 $borrowed_books = $stats['borrowed_books'];
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    $sql = "SELECT * FROM admin WHERE username = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
-            // Set session variables
-            $_SESSION['admin_id'] = $row['id'];
-            $_SESSION['admin_name'] = $row['username'];
-            $_SESSION['admin_image'] = $row['admin_image'];
-            
-            header("Location: dashboard.php");
-            exit();
-        }
-    }
-    
-    // If login fails
-    $_SESSION['error'] = "Invalid username or password";
-    header("Location: login.php");
-    exit();
-}
 ?>
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Dashboard</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
-    <div class="wrapper">
+<div class="wrapper">
     <?php require_once 'includes/sidebar.php'; ?>
     <div class="main-content">
-        <!-- Header Section -->
-        <div class="mb-4 text-bold">
-            <h2 class="mb-3">Dashboard</h2>
-        </div>
-        <div class="con tainer-fluid py-4">
+        <!-- Dashboard Content -->
+        <div class="container-fluid">
+            <!-- Header Section -->
+            <div class="mb-4">
+                <h2 class="mb-3">Dashboard</h2>
+            </div>
+            
+            <!-- Stats Cards Row -->
             <div class="row g-4">
                 <!-- Total Books Card -->
                 <div class="col-12 col-md-6 col-xl-3">
@@ -143,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
 
-            <!-- After the cards section, add this new section for charts -->
+            <!-- Charts Row -->
             <div class="row mt-4">
                 <!-- Pie Chart -->
                 <div class="col-md-6">
@@ -168,15 +128,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
             </div>
-            <!-- After the charts section -->
-        <div class="row mt-4">
-            <div class="col-md-12">
-                <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Library Gallery</h5>
-                    </div>
-                    <div class="card-body p-0">
-                        <?php include('./includes/slide.php'); ?>
+
+            <!-- Library Gallery -->
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Library Gallery</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <?php include('./includes/slide.php'); ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -184,143 +146,141 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<?php require_once 'includes/footer.php'; ?>
 
-    <script>
-        // Update the chart configurations
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        // Pie Chart
-        const pieCtx = document.getElementById('pieChart').getContext('2d');
-        new Chart(pieCtx, {
-            type: 'pie',
-            data: {
-                labels: ['Total Books', 'Total Students', 'Returned Books', 'Borrowed Books'],
-                datasets: [{
-                    data: [
-                        <?php echo $total_books; ?>,
-                        <?php echo $total_students; ?>,
-                        <?php echo $returned_books; ?>,
-                        <?php echo $borrowed_books; ?>
-                    ],
-                    backgroundColor: [
-                        'rgba(13, 110, 253, 0.7)', // primary
-                        'rgba(25, 135, 84, 0.7)', // success
-                        'rgba(13, 202, 240, 0.7)', // info
-                        'rgba(255, 193, 7, 0.7)' // warning
-                    ],
-                    borderColor: [
-                        'rgba(13, 110, 253, 1)',
-                        'rgba(25, 135, 84, 1)',
-                        'rgba(13, 202, 240, 1)',
-                        'rgba(255, 193, 7, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'right',
-                        labels: {
-                            padding: 20,
-                            usePointStyle: true,
-                            pointStyle: 'circle',
-                            font: {
-                                size: 12
-                            }
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Overall Library Statistics',
+<script>
+    // Update the chart configurations
+
+    // Pie Chart
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+    new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Total Books', 'Total Students', 'Returned Books', 'Borrowed Books'],
+            datasets: [{
+                data: [
+                    <?php echo $total_books; ?>,
+                    <?php echo $total_students; ?>,
+                    <?php echo $returned_books; ?>,
+                    <?php echo $borrowed_books; ?>
+                ],
+                backgroundColor: [
+                    'rgba(13, 110, 253, 0.7)', // primary
+                    'rgba(25, 135, 84, 0.7)', // success
+                    'rgba(13, 202, 240, 0.7)', // info
+                    'rgba(255, 193, 7, 0.7)' // warning
+                ],
+                borderColor: [
+                    'rgba(13, 110, 253, 1)',
+                    'rgba(25, 135, 84, 1)',
+                    'rgba(13, 202, 240, 1)',
+                    'rgba(255, 193, 7, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        pointStyle: 'circle',
                         font: {
-                            size: 16,
-                            weight: 'bold'
-                        },
-                        padding: {
-                            bottom: 15
-                        }
-                    }
-                }
-            }
-        });
-
-        // Bar Chart
-        const barCtx = document.getElementById('barChart').getContext('2d');
-        new Chart(barCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Total Books', 'Borrowed', 'Returned'],
-                datasets: [{
-                    label: 'Total Books',
-                    data: [<?php echo $total_books; ?>, 0, 0],
-                    backgroundColor: 'rgba(13, 110, 253, 0.7)',
-                    borderColor: 'rgba(13, 110, 253, 1)',
-                    borderWidth: 1
-                }, {
-                    label: 'Borrowed Books',
-                    data: [0, <?php echo $borrowed_books; ?>, 0],
-                    backgroundColor: 'rgba(255, 193, 7, 0.7)',
-                    borderColor: 'rgba(255, 193, 7, 1)',
-                    borderWidth: 1
-                }, {
-                    label: 'Returned Books',
-                    data: [0, 0, <?php echo $returned_books; ?>],
-                    backgroundColor: 'rgba(13, 202, 240, 0.7)',
-                    borderColor: 'rgba(13, 202, 240, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1
+                            size: 12
                         }
                     }
                 },
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'right',
-                        labels: {
-                            padding: 20,
-                            usePointStyle: true,
-                            pointStyle: 'rect',
-                            font: {
-                                size: 12
-                            }
-                        }
+                title: {
+                    display: true,
+                    text: 'Overall Library Statistics',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
                     },
-                    title: {
-                        display: true,
-                        text: 'Books Distribution',
-                        font: {
-                            size: 16,
-                            weight: 'bold'
-                        },
-                        padding: {
-                            bottom: 15
-                        }
+                    padding: {
+                        bottom: 15
                     }
                 }
             }
-        });
-    </script>
-    <script src="js/scripts.js"></script>
-    <script src="js/dashboard.js"></script>
-    <script src="js/slide.js"></script>
-    <!-- footer -->
-    <?php require_once 'includes/footer.php'; ?>
-    </body>
-</html>
+        }
+    });
+
+    // Bar Chart
+    const barCtx = document.getElementById('barChart').getContext('2d');
+    new Chart(barCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Total Books', 'Borrowed', 'Returned'],
+            datasets: [{
+                label: 'Total Books',
+                data: [<?php echo $total_books; ?>, 0, 0],
+                backgroundColor: 'rgba(13, 110, 253, 0.7)',
+                borderColor: 'rgba(13, 110, 253, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Borrowed Books',
+                data: [0, <?php echo $borrowed_books; ?>, 0],
+                backgroundColor: 'rgba(255, 193, 7, 0.7)',
+                borderColor: 'rgba(255, 193, 7, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Returned Books',
+                data: [0, 0, <?php echo $returned_books; ?>],
+                backgroundColor: 'rgba(13, 202, 240, 0.7)',
+                borderColor: 'rgba(13, 202, 240, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        pointStyle: 'rect',
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Books Distribution',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    },
+                    padding: {
+                        bottom: 15
+                    }
+                }
+            }
+        }
+    });
+</script>
+<script src="js/scripts.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/slide.js"></script>

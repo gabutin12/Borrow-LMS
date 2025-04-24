@@ -27,6 +27,7 @@ h6,
   flex-wrap: nowrap;
   height: 100vh; /* Full height */
   overflow: hidden; /* Prevent scrolling issues */
+  position: relative;
 }
 
 /* Navbar */
@@ -43,10 +44,11 @@ h6,
 
 /* Navbar Left */
 .navbar-left {
-  width: 17.7%;
+  width: 350px;
   height: 100%; /* Match navbar height */
   background-color: #0a2558; /* Same color as the sidebar */
   display: flex;
+  padding-top: 0.5rem; /* Add some top padding */
   align-items: center;
   justify-content: center;
   border: none; /* Ensure no border is applied */
@@ -175,17 +177,52 @@ h6,
 
 /* Sidebar Styles */
 .sidebar {
-  width: 15%;
-  background-color: #0a2558;
-  position: fixed;
-  left: 0;
-  top: 56px;
-  bottom: 0;
-  z-index: 1000;
-  padding: 0;
-  margin: 0;
+  width: 350px;
   height: 100vh;
+  top: 56px;
+  display: fixed;
+  padding-top: 50px;
+  left: 0;
+  background-color: #0a2558;
   color: #fff;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 250px;
+  padding: 2rem;
+  background: #f8f9fa;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  padding: 20px;
+  width: calc(100% - 250px);
+  min-height: calc(100vh - 56px);
+}
+
+/* Sidebar Toggle States */
+.sidebar-collapsed .sidebar {
+  left: -250px;
+  overflow: hidden;
+}
+
+.sidebar-collapsed .main-content {
+  margin-left: 0;
+  width: 100%;
+}
+
+/* Hamburger Icon Animation */
+#sidebarToggle {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-collapsed #sidebarToggle {
+  transform: rotate(180deg);
 }
 
 /* Profile Section */
@@ -226,7 +263,10 @@ h6,
 
 /* Sidebar Section Headers */
 .nav-header {
-  padding: 1rem 1rem 0.5rem; /* Reduced left padding */
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .nav-header-text {
@@ -245,11 +285,15 @@ h6,
 /* Main Content Styles */
 .main-content {
   flex: 1;
-  margin-left: 15%;
+  margin-left: 250px;
   padding: 2rem;
   background: #f8f9fa;
   height: calc(100vh - 56px);
   overflow-y: auto;
+  transition: all 0.3s ease;
+  padding: 20px;
+  width: calc(100% - 250px);
+  min-height: calc(100vh - 56px);
 }
 
 /* Sidebar Navigation */
@@ -379,7 +423,7 @@ h6,
 /* Dashboard stat cards specific styles */
 .stat-card .card-body {
   padding: 1rem;
-  min-height: auto !important;
+  min-height: 0; /* Changed from auto to 0 for better browser compatibility */
   height: auto !important;
 }
 
@@ -405,7 +449,7 @@ h6,
 /* Main Content Styles */
 .main-content-students {
   flex: 1;
-  margin-left: 15%;
+  margin-left: 250px;
   padding: 2rem;
   background: #f8f9fa;
   height: calc(100vh - 56px);
@@ -473,7 +517,7 @@ h6,
 
 .main-content-courses {
   flex: 1;
-  margin-left: 15%;
+  margin-left: 250px;
   padding: 2rem;
   background: #f8f9fa;
   height: calc(100vh - 56px);
@@ -490,7 +534,7 @@ h6,
 
 .main-content-books {
   flex: 1;
-  margin-left: 15%;
+  margin-left: 250px;
   padding: 2rem;
   background: #f8f9fa;
   height: calc(100vh - 56px);
@@ -512,7 +556,7 @@ h6,
 
 .main-content-category {
   flex: 1;
-  margin-left: 15%;
+  margin-left: 250px;
   padding: 2rem;
   background: #f8f9fa;
   height: calc(100vh - 56px);
@@ -539,7 +583,7 @@ h6,
 /* Borrowed Books Logs Styles */
 .main-content-borrow-logs {
   flex: 1;
-  margin-left: 15%;
+  margin-left: 250px;
   padding: 2rem;
   background: #f8f9fa;
   height: calc(100vh - 56px);
@@ -779,7 +823,7 @@ a:hover .card .text-warning {
 
 .main-content-reports {
   flex: 1;
-  margin-left: 15%;
+  margin-left: 250px;
   padding: 2rem;
   background: #f8f9fa;
   height: calc(100vh - 56px);
@@ -841,7 +885,7 @@ a:hover .card .text-warning {
 /* About Us Page Styles */
 .main-content-aboutus {
   flex: 1;
-  margin-left: 15%;
+  margin-left: 250px;
   padding: 2rem;
   background: #f8f9fa;
   height: calc(100vh - 56px);
@@ -1239,7 +1283,7 @@ Kiosk Information Dropdown Styles */ .dropdown-box {
 
 .main-content-settings {
   flex: 1;
-  margin-left: 15%;
+  margin-left: 250px;
   padding: 2rem;
   background: #f8f9fa;
   height: calc(100vh - 56px);
@@ -1248,7 +1292,7 @@ Kiosk Information Dropdown Styles */ .dropdown-box {
 
 .main-content-borrow {
   flex: 1;
-  margin-left: 15%;
+  margin-left: 250px;
   padding: 2rem;
   background: #f8f9fa;
   height: calc(100vh - 56px);
@@ -1257,7 +1301,7 @@ Kiosk Information Dropdown Styles */ .dropdown-box {
 
 .main-content-returns {
   flex: 1;
-  margin-left: 15%;
+  margin-left: 250px;
   padding: 2rem;
   background: #f8f9fa;
   height: calc(100vh - 56px);
@@ -1266,7 +1310,7 @@ Kiosk Information Dropdown Styles */ .dropdown-box {
 
 .main-content-reports {
   flex: 1;
-  margin-left: 15%;
+  margin-left: 250px;
   padding: 2rem;
   background: #f8f9fa;
   height: calc(100vh - 56px);
@@ -1322,9 +1366,144 @@ Kiosk Information Dropdown Styles */ .dropdown-box {
 
 .main-content-admin {
   flex: 1;
-  margin-left: 15%;
+  margin-left: 250px;
   padding: 2rem;
   background: #f8f9fa;
   height: calc(100vh - 56px);
   overflow-y: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 240px;
+    }
+    
+    .main-content {
+        margin-left: 240px;
+    }
+    
+    .navbar-left {
+        width: 240px;
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar {
+        width: 200px;
+    }
+    
+    .main-content {
+        margin-left: 200px;
+    }
+    
+    .navbar-left {
+        width: 200px;
+    }
+    
+    .stat-card .card-text {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: -100%;
+        width: 250px;
+        z-index: 1050;
+        transition: 0.3s ease-in-out;
+    }
+    
+    .sidebar.show {
+        left: 0;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .navbar-left {
+        width: auto;
+    }
+    
+    .navbar-right {
+        width: 100%;
+    }
+    
+    .footer {
+        padding: 10px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .footer-logo img {
+        margin-left: 0;
+    }
+    
+    .footer-bottom {
+        margin-left: 0;
+    }
+    
+    .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .stat-card .card-text {
+        font-size: 1.25rem;
+    }
+    
+    .chart-card .card-body {
+        height: 300px;
+    }
+    
+    .footer {
+        height: auto;
+    }
+    
+    .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .footer-links a {
+        margin: 0;
+    }
+}
+
+/* Smooth transitions */
+.sidebar,
+.main-content,
+.navbar-left,
+.navbar-right {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Override Bootstrap container padding */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+}
+
+/* Chart responsiveness */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    max-width: 100% !important;
+    height: auto !important;
 }
