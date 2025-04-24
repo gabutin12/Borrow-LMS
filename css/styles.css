@@ -44,7 +44,7 @@ h6,
 
 /* Navbar Left */
 .navbar-left {
-  width: 350px;
+  width: 369px;
   height: 100%; /* Match navbar height */
   background-color: #0a2558; /* Same color as the sidebar */
   display: flex;
@@ -74,6 +74,47 @@ h6,
   margin: 0; /* Remove any default margin */
   overflow: visible; /* Ensure child elements are visible */
   position: relative; /* Allow proper positioning of child elements */
+}
+
+/* Navbar Right */
+.navbar-right {
+    width: 90%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    margin: 0;
+    overflow: visible;
+    position: relative;
+}
+
+/* Sidebar Toggle Button */
+#sidebarToggle {
+    padding: 0.75rem;
+    color: #212529;
+    transition: all 0.3s ease;
+    margin-left: 1rem;
+}
+
+#sidebarToggle:hover {
+    transform: scale(1.1);
+}
+
+#sidebarToggle .fa-bars {
+    font-size: 1.25rem;
+}
+
+#sidebarToggle.active .fa-bars {
+    transform: rotate(180deg);
+}
+
+/* Admin Profile Section */
+.navbar-right .d-flex.align-items-center.gap-3 {
+    margin-left: auto;
+    margin-right: 1rem;
 }
 
 /* Admin Profile Section Styles */
@@ -193,8 +234,8 @@ h6,
 
 .main-content {
   flex: 1;
-  margin-left: 250px;
-  padding: 2rem;
+  margin-left: 200px;
+  padding: 1.5rem;
   background: #f8f9fa;
   height: calc(100vh - 56px);
   overflow-y: auto;
@@ -1506,4 +1547,59 @@ Kiosk Information Dropdown Styles */ .dropdown-box {
 canvas {
     max-width: 100% !important;
     height: auto !important;
+}
+
+/* Sidebar Toggle Button */
+#sidebarToggle {
+    padding: 0.5rem;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+#sidebarToggle:hover {
+    transform: scale(1.1);
+}
+
+#sidebarToggle .fa-bars {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+/* Sidebar Collapse States */
+.sidebar.collapsed {
+    width: 0;
+    overflow: hidden;
+}
+
+.sidebar-collapsed .main-content {
+    margin-left: 0;
+    width: 100%;
+}
+
+.sidebar-collapsed .navbar-left {
+    width: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 56px;
+        height: calc(100vh - 56px);
+        z-index: 1050;
+        width: 250px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .sidebar.collapsed {
+        transform: translateX(0);
+        width: 250px;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
 }

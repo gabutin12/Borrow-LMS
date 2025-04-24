@@ -22,8 +22,7 @@ $borrowed_books = $stats['borrowed_books'];
             <!-- Header Section -->
             <div class="mb-4">
                 <h2 class="mb-3">Dashboard</h2>
-            </div>
-            
+            </div>  
             <!-- Stats Cards Row -->
             <div class="row g-4">
                 <!-- Total Books Card -->
