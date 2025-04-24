@@ -35,6 +35,15 @@ CREATE TABLE `admin` (
   `remember_token` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- ALTER TABLE for admin
+ALTER TABLE `admin`
+ADD COLUMN `firstname` varchar(100) DEFAULT NULL AFTER `password`,
+ADD COLUMN `lastname` varchar(100) DEFAULT NULL AFTER `firstname`,
+ADD COLUMN `email` varchar(100) DEFAULT NULL AFTER `lastname`,
+ADD COLUMN `photo` varchar(255) DEFAULT 'images/default.jpg' AFTER `email`,
+ADD COLUMN `status` enum('Active','Inactive') DEFAULT 'Active' AFTER `photo`;
+
+
 --
 -- Dumping data for table `admin`
 --
