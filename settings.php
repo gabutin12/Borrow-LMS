@@ -80,14 +80,13 @@ $max_borrow_days = $settings['max_borrow_days'] ?? 7;
                 </div>
             </div>
 
-            <!-- Admin Settings -->
+            <!-- Admin Settings
             <div class="col-md-6 mb-4">
                 <div class="card settings-card shadow-sm border-0">
                     <div class="card-header settings-header">
                         <h5 class="card-title mb-0">
                             <i class="bi bi-shield-lock me-2"></i>Admin Security
-                        </h5>
-                        <!-- <small class="text-muted">Manage administrator password</small> -->
+                        </h5>                        
                     </div>
                     <div class="card-body settings-body">
                         <form id="adminSettingsForm" method="POST" action="update_admin.php">
@@ -126,7 +125,7 @@ $max_borrow_days = $settings['max_borrow_days'] ?? 7;
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

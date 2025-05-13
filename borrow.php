@@ -48,7 +48,7 @@ require_once 'db_connection.php';
             <!-- Student Selection Section -->
             <div class="card shadow-sm mb-4">
                 <div class="card-body">
-                    <h5 class="card-title mb-3">Select Student</h5>
+                    <!-- <h5 class="card-title mb-3">Select Student</h5> -->
                     <div class="row align-items-center">
                         <!-- Student Dropdown -->
                         <div class="col-md-8">

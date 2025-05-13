@@ -61,7 +61,7 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                 List of Students
             </h6>
             <button class="btn btn-primary mb-3">
-                <i class="bi bi-plus"></i> New
+                <i class="bi bi-plus"></i> New Student
             </button>
         </div>
 
@@ -92,7 +92,7 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($row['course']) . "</td>";
-                            echo "<td class='text-center'><img src='" . htmlspecialchars($row['photo']) . "' class='rounded-circle mx-auto d-block' width='60' height='60' alt='Student Photo'></td>";
+                            echo "<td><img src='" . htmlspecialchars($row['photo']) . "' class='rounded-circle' width='60' height='70' alt='Student Photo style='display: block; margin-left: auto; margin-right: auto;'></td>";
                             echo "<td>" . htmlspecialchars($row['student_id']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['firstname']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['lastname']) . "</td>";
@@ -121,7 +121,7 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
 
     <!-- Add Student Modal -->
     <div class="modal fade" id="addStudentModal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Add New Student</h5>
@@ -129,55 +129,79 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                 </div>
                 <form id="addStudentForm" method="POST" action="actions/student_add.php" enctype="multipart/form-data">
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label">Course</label>
-                            <select name="course" class="form-select" required>
-                                <?php
-                                $query = "SELECT course_code FROM courses";
-                                $result = mysqli_query($conn, $query);
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<option value='" . htmlspecialchars($row['course_code']) . "'>" . htmlspecialchars($row['course_code']) . "</option>";
-                                }
-                                ?>
-                            </select>
+                        <!-- Centered Photo Section -->
+                        <div class="text-center mb-4">
+                            <div class="d-flex justify-content-center">
+                                <img id="photo_preview" src="images/default.jpg" alt="Student Photo"
+                                    class="img-thumbnail mb-2"
+                                    style="max-width: 100px; height: 100px; object-fit: cover;">
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label">Upload Photo</label>
+                                <input type="file" name="photo" class="form-control" accept="image/*"
+                                    onchange="previewImage(this);">
+                                <small class="form-text text-muted">Upload student photo (optional)</small>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Student ID</label>
-                            <input type="text" name="student_id" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">First Name</label>
-                            <input type="text" name="firstname" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Last Name</label>
-                            <input type="text" name="lastname" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Mobile No.</label>
-                            <input type="text" name="mobile_no" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Year Level</label>
-                            <select name="year_level" class="form-select" required>
-                                <option value="">Select Year Level</option>
-                                <option value="1st Year">1st Year</option>
-                                <option value="2nd Year">2nd Year</option>
-                                <option value="3rd Year">3rd Year</option>
-                                <option value="4th Year">4th Year</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Photo</label>
-                            <input type="file" name="photo" class="form-control" accept="image/*">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Gender</label>
-                            <select name="gender" class="form-select" required>
-                                <option value="">Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
+
+                        <!-- Two Column Layout -->
+                        <div class="row">
+                            <!-- Left Column -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Course</label>
+                                    <select name="course" class="form-select" required>
+                                        <option value="">Select Course</option>
+                                        <?php
+                                        $query = "SELECT course_code FROM courses";
+                                        $result = mysqli_query($conn, $query);
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            echo "<option value='" . htmlspecialchars($row['course_code']) . "'>" .
+                                                htmlspecialchars($row['course_code']) . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Student ID</label>
+                                    <input type="text" name="student_id" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" name="firstname" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" name="lastname" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <!-- Right Column -->
+                            <div class="col-md-6">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Mobile No.</label>
+                                    <input type="text" name="mobile_no" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Gender</label>
+                                    <select name="gender" class="form-select" required>
+                                        <option value="">Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Year Level</label>
+                                    <select name="year_level" class="form-select" required>
+                                        <option value="">Select Year Level</option>
+                                        <option value="1st Year">1st Year</option>
+                                        <option value="2nd Year">2nd Year</option>
+                                        <option value="3rd Year">3rd Year</option>
+                                        <option value="4th Year">4th Year</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -191,7 +215,7 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
 
     <!-- Edit Student Modal -->
     <div class="modal fade" id="editStudentModal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg"> <!-- Changed to modal-lg for wider modal -->
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit Student</h5>
@@ -201,53 +225,72 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                     <input type="hidden" name="student_id" id="student_edit_id">
                     <input type="hidden" name="current_photo" id="current_photo">
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label">Course</label>
-                            <select name="course" class="form-select" required>
-                                <?php
-                                $query = "SELECT course_code FROM courses";
-                                $result = mysqli_query($conn, $query);
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<option value='" . htmlspecialchars($row['course_code']) . "'>" . htmlspecialchars($row['course_code']) . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="mb-3">
+                        <!-- Centered Photo Section -->
+                        <div class="text-center mb-4">
                             <label class="form-label">Current Photo</label>
-                            <img id="current_photo_preview" src="" alt="Current Photo" class="img-thumbnail mb-2" style="max-width: 100px; display: block;">
-                            <label class="form-label">Update Photo</label>
-                            <input type="file" name="photo" class="form-control" accept="image/*">
-                            <small class="form-text text-muted">Leave empty to keep current photo</small>
+                            <div class="d-flex justify-content-center">
+                                <img id="current_photo_preview" src="" alt="Current Photo"
+                                    class="img-thumbnail mb-2"
+                                    style="max-width: 100px; height: 100px; object-fit: cover;">
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label">Update Photo</label>
+                                <input type="file" name="photo" class="form-control" accept="image/*" onchange="previewImage(this);">
+                                <small class="form-text text-muted">Leave empty to keep current photo</small>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">First Name</label>
-                            <input type="text" name="firstname" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Last Name</label>
-                            <input type="text" name="lastname" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Mobile No.</label>
-                            <input type="text" name="mobile_no" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Year Level</label>
-                            <select name="year_level" class="form-select">
-                                <option value="">Select Year Level</option>
-                                <option value="1st Year">1st Year</option>
-                                <option value="2nd Year">2nd Year</option>
-                                <option value="3rd Year">3rd Year</option>
-                                <option value="4th Year">4th Year</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Gender</label>
-                            <select name="gender" class="form-select" required>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
+
+                        <!-- Two Column Layout -->
+                        <div class="row">
+                            <!-- Left Column -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Course</label>
+                                    <select name="course" class="form-select" required>
+                                        <?php
+                                        $query = "SELECT course_code FROM courses";
+                                        $result = mysqli_query($conn, $query);
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            echo "<option value='" . htmlspecialchars($row['course_code']) . "'>" .
+                                                htmlspecialchars($row['course_code']) . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" name="firstname" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" name="lastname" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <!-- Right Column -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Mobile No.</label>
+                                    <input type="text" name="mobile_no" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Year Level</label>
+                                    <select name="year_level" class="form-select" required>
+                                        <option value="">Select Year Level</option>
+                                        <option value="1st Year">1st Year</option>
+                                        <option value="2nd Year">2nd Year</option>
+                                        <option value="3rd Year">3rd Year</option>
+                                        <option value="4th Year">4th Year</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Gender</label>
+                                    <select name="gender" class="form-select" required>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -286,6 +329,7 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     $(document).ready(function() {
@@ -309,14 +353,25 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                     orderable: false
                 },
                 {
-                    targets: 7, // Action column
+                    targets: -1, // Action column (last column)
                     orderable: false
+                },
+                {
+                    // Add custom sorting for Year Level
+                    targets: 7, // Year Level column
+                    type: 'string',
+                    render: function(data, type, row) {
+                        if (type === 'sort') {
+                            // Convert year level to a number for sorting
+                            return data.replace(/(\d+)st|\d+nd|\d+rd|\d+th/g, '$1');
+                        }
+                        return data;
+                    }
                 }
             ]
         });
     });
 
-    // Replace the existing modal event handlers with this code
     $(document).ready(function() {
         // Open Add Modal
         $('.btn-primary').click(function() {
@@ -331,6 +386,9 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
             var firstname = row.find('td:eq(3)').text().trim();
             var lastname = row.find('td:eq(4)').text().trim();
             var mobile_no = row.find('td:eq(5)').text().trim();
+            var gender = row.find('td:eq(6)').text().trim();
+            var year_level = row.find('td:eq(7)').text().trim();
+            var photo_url = row.find('td:eq(1) img').attr('src');
 
             // Set values in edit form
             $('#editStudentModal select[name="course"]').val(course);
@@ -338,26 +396,42 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
             $('#editStudentModal input[name="firstname"]').val(firstname);
             $('#editStudentModal input[name="lastname"]').val(lastname);
             $('#editStudentModal input[name="mobile_no"]').val(mobile_no);
+            $('#editStudentModal select[name="gender"]').val(gender);
+            $('#editStudentModal select[name="year_level"]').val(year_level);
             $('#student_edit_id').val(student_id);
+            $('#current_photo').val(photo_url);
+            $('#current_photo_preview').attr('src', photo_url);
 
-            // Store original values as data attributes
+            // Store original values
             $('#editStudentForm').data('original', {
                 course: course,
                 student_id: student_id,
                 firstname: firstname,
                 lastname: lastname,
-                mobile_no: mobile_no
+                mobile_no: mobile_no,
+                gender: gender,
+                year_level: year_level,
+                photo_url: photo_url
             });
 
             $('#editStudentModal').modal('show');
         });
 
+        // Validate Mobile Number
+        $('input[name="mobile_no"]').on('input', function() {
+            let value = $(this).val();
+            // Allow only numbers and limit to 11 digits
+            if (!/^\d{0,11}$/.test(value)) {
+                $(this).val(value.replace(/[^\d]/g, '').substring(0, 11));
+            }
+        });
+
         // Handle modal close/hide
         $('#editStudentModal').on('hidden.bs.modal', function() {
-            // Reset form
             $('#editStudentForm')[0].reset();
+            $('#current_photo_preview').attr('src', '');
+            $('.is-invalid').removeClass('is-invalid');
 
-            // Restore original values if they exist
             var original = $('#editStudentForm').data('original');
             if (original) {
                 $('#editStudentModal select[name="course"]').val(original.course);
@@ -365,61 +439,104 @@ require_once 'db_connection.php'; // Ensure this file contains your database con
                 $('#editStudentModal input[name="firstname"]').val(original.firstname);
                 $('#editStudentModal input[name="lastname"]').val(original.lastname);
                 $('#editStudentModal input[name="mobile_no"]').val(original.mobile_no);
+                $('#editStudentModal select[name="gender"]').val(original.gender);
+                $('#editStudentModal select[name="year_level"]').val(original.year_level);
+                $('#current_photo_preview').attr('src', original.photo_url);
             }
         });
 
-        // Delete button click handler
+        // Delete button handler with confirmation
         $(document).on('click', '.delete-btn', function(e) {
             e.preventDefault();
             var studentId = $(this).data('id');
+            var studentName = $(this).closest('tr').find('td:eq(3)').text().trim() + ' ' +
+                $(this).closest('tr').find('td:eq(4)').text().trim();
 
             if (studentId) {
-                // Set the student ID in the delete modal form
                 $('#student_delete_id').val(studentId);
+                $('.student-name').text(studentName); // Add this span in your delete modal
                 $('#deleteStudentModal').modal('show');
             } else {
-                alert('Error: Could not determine student ID');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Could not determine student ID'
+                });
             }
         });
 
-        // Delete form submit handler
-        $('#deleteStudentForm').on('submit', function(e) {
-            var studentId = $('#student_delete_id').val();
-            if (!studentId) {
-                e.preventDefault();
-                alert('Error: No student ID specified');
-                return false;
-            }
-        });
-
-        // Add form submit handler
-        $('#addStudentForm').on('submit', function(e) {
-            var requiredFields = $(this).find('[required]');
+        // Form validation
+        function validateForm($form) {
             var isValid = true;
+            var requiredFields = $form.find('[required]');
 
             requiredFields.each(function() {
                 if (!$(this).val().trim()) {
                     isValid = false;
                     $(this).addClass('is-invalid');
+                    $(this).next('.invalid-feedback').remove();
+                    $(this).after('<div class="invalid-feedback">This field is required</div>');
                 } else {
                     $(this).removeClass('is-invalid');
+                    $(this).next('.invalid-feedback').remove();
                 }
             });
 
-            if (!isValid) {
+            return isValid;
+        }
+
+        // Add form submit handler
+        $('#addStudentForm').on('submit', function(e) {
+            if (!validateForm($(this))) {
                 e.preventDefault();
-                alert('Please fill in all required fields');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Validation Error',
+                    text: 'Please fill in all required fields correctly'
+                });
                 return false;
             }
             return true;
         });
 
-        // Reset form on modal close
-        $('#addStudentModal').on('hidden.bs.modal', function() {
-            $('#addStudentForm')[0].reset();
-            $('#addStudentForm').find('.is-invalid').removeClass('is-invalid');
+        // Edit form submit handler
+        $('#editStudentForm').on('submit', function(e) {
+            if (!validateForm($(this))) {
+                e.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Validation Error',
+                    text: 'Please fill in all required fields correctly'
+                });
+                return false;
+            }
+            return true;
+        });
+
+        // Reset forms on modal close
+        $('.modal').on('hidden.bs.modal', function() {
+            var $form = $(this).find('form');
+            $form[0].reset();
+            $form.find('.is-invalid').removeClass('is-invalid');
+            $form.find('.invalid-feedback').remove();
         });
     });
+
+
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                // Check which modal is being used and update the corresponding preview
+                if ($(input).closest('#addStudentModal').length > 0) {
+                    $('#photo_preview').attr('src', e.target.result);
+                } else if ($(input).closest('#editStudentModal').length > 0) {
+                    $('#current_photo_preview').attr('src', e.target.result);
+                }
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
 </body>
 

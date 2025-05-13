@@ -52,7 +52,7 @@ require_once 'db_connection.php';
                 List of Books
             </h6>
             <button class="btn btn-primary mb-3">
-                <i class="bi bi-plus"></i> New
+                <i class="bi bi-plus"></i> New Book
             </button>
         </div>
 
@@ -116,9 +116,10 @@ require_once 'db_connection.php';
             </table>
         </div>
     </div>
+
     <!-- Add Book Modal -->
     <div class="modal fade" id="addBookModal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Add New Book</h5>
@@ -126,45 +127,77 @@ require_once 'db_connection.php';
                 </div>
                 <form id="addBookForm" method="POST" action="actions/book_add.php" enctype="multipart/form-data">
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label">ISBN</label>
-                            <input type="text" name="isbn" class="form-control" required>
+                        <!-- Centered Photo Section -->
+                        <div class="text-center mb-4">
+                            <div class="d-flex justify-content-center">
+                                <img id="photo_preview" src="images/default-book.png" alt="Book Cover"
+                                    class="img-thumbnail mb-2"
+                                    style="max-width: 200px; height: 180px; object-fit: cover;">
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label">Upload Cover</label>
+                                <input type="file" name="picture" class="form-control" accept="image/*"
+                                    onchange="previewImage(this, 'photo_preview');">
+                                <small class="form-text text-muted">Upload book cover (optional)</small>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Title</label>
-                            <input type="text" name="title" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Author</label>
-                            <input type="text" name="author" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Copyright Year</label>
-                            <input type="text" name="copyright_year" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Publisher</label>
-                            <input type="text" name="publisher" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Stocks</label>
-                            <input type="number" name="stocks" class="form-control" required min="0">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Category</label>
-                            <select name="category" class="form-select" required>
-                                <?php
-                                $query = "SELECT category_name FROM categories";
-                                $result = mysqli_query($conn, $query);
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<option value='" . htmlspecialchars($row['category_name']) . "'>" . htmlspecialchars($row['category_name']) . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Picture</label>
-                            <input type="file" name="picture" class="form-control" accept="image/*">
+
+                        <!-- Two Column Layout -->
+                        <div class="row">
+                            <!-- Left Column -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">ISBN</label>
+                                    <input type="text" name="isbn" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" name="title" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Author</label>
+                                    <input type="text" name="author" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Copyright Year</label>
+                                    <input type="text" name="copyright_year" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <!-- Right Column -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Publisher</label>
+                                    <input type="text" name="publisher" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Stocks</label>
+                                    <div class="input-group">
+                                        <button type="button" class="btn btn-outline-secondary" onclick="decrementStocks(this)">
+                                            <i class="bi bi-dash"></i>
+                                        </button>
+                                        <input type="number" name="stocks" class="form-control text-center" value="0" required min="0"
+                                            style="max-width: 80px;" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                        <button type="button" class="btn btn-outline-secondary" onclick="incrementStocks(this)">
+                                            <i class="bi bi-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Category</label>
+                                    <select name="category" class="form-select" required>
+                                        <option value="">Select Category</option>
+                                        <?php
+                                        $query = "SELECT category_name FROM categories";
+                                        $result = mysqli_query($conn, $query);
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            echo "<option value='" . htmlspecialchars($row['category_name']) . "'>" .
+                                                htmlspecialchars($row['category_name']) . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -179,7 +212,7 @@ require_once 'db_connection.php';
 
     <!-- Edit Book Modal -->
     <div class="modal fade" id="editBookModal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit Book</h5>
@@ -188,41 +221,72 @@ require_once 'db_connection.php';
                 <form id="editBookForm" method="POST" action="actions/book_edit.php" enctype="multipart/form-data">
                     <input type="hidden" name="isbn" id="edit_isbn">
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label">Title</label>
-                            <input type="text" name="title" id="edit_title" class="form-control" required>
+                        <!-- Centered Photo Section -->
+                        <div class="text-center mb-4">
+                            <div class="d-flex justify-content-center">
+                                <img id="edit_photo_preview" src="" alt="Current Cover"
+                                    class="img-thumbnail mb-2"
+                                    style="max-width: 100px; height: 140px; object-fit: cover;">
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label">Update Cover</label>
+                                <input type="file" name="picture" class="form-control" accept="image/*"
+                                    onchange="previewImage(this, 'edit_photo_preview');">
+                                <small class="form-text text-muted">Leave empty to keep current cover</small>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Author</label>
-                            <input type="text" name="author" id="edit_author" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Copyright Year</label>
-                            <input type="text" name="copyright_year" id="edit_copyright" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Publisher</label>
-                            <input type="text" name="publisher" id="edit_publisher" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Stocks</label>
-                            <input type="number" name="stocks" id="edit_stocks" class="form-control" required min="0">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Category</label>
-                            <select name="category" id="edit_category" class="form-select" required>
-                                <?php
-                                $query = "SELECT category_name FROM categories";
-                                $result = mysqli_query($conn, $query);
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<option value='" . htmlspecialchars($row['category_name']) . "'>" . htmlspecialchars($row['category_name']) . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">New Picture (optional)</label>
-                            <input type="file" name="picture" class="form-control" accept="image/*">
+
+                        <!-- Two Column Layout -->
+                        <div class="row">
+                            <!-- Left Column -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" name="title" id="edit_title" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Author</label>
+                                    <input type="text" name="author" id="edit_author" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Copyright Year</label>
+                                    <input type="text" name="copyright_year" id="edit_copyright" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <!-- Right Column -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Publisher</label>
+                                    <input type="text" name="publisher" id="edit_publisher" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Stocks</label>
+                                    <div class="input-group">
+                                        <button type="button" class="btn btn-outline-secondary" onclick="decrementStocks(this)">
+                                            <i class="bi bi-dash"></i>
+                                        </button>
+                                        <input type="number" name="stocks" id="edit_stocks" class="form-control text-center" required min="0"
+                                            style="max-width: 80px;" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                        <button type="button" class="btn btn-outline-secondary" onclick="incrementStocks(this)">
+                                            <i class="bi bi-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Category</label>
+                                    <select name="category" id="edit_category" class="form-select" required>
+                                        <?php
+                                        $query = "SELECT category_name FROM categories";
+                                        $result = mysqli_query($conn, $query);
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            echo "<option value='" . htmlspecialchars($row['category_name']) . "'>" .
+                                                htmlspecialchars($row['category_name']) . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -371,6 +435,7 @@ require_once 'db_connection.php';
             var stocks = row.find('td:eq(6)').text().trim();
             var publisher = row.find('td:eq(7)').text().trim();
             var category = row.find('td:eq(9)').text().trim();
+            var currentCover = row.find('td:eq(1) img').attr('src');
 
             // Set form values
             $('#edit_isbn').val(isbn);
@@ -380,6 +445,7 @@ require_once 'db_connection.php';
             $('#edit_stocks').val(stocks);
             $('#edit_publisher').val(publisher);
             $('#edit_category').val(category);
+            $('#edit_photo_preview').attr('src', currentCover);
 
             // Store original values
             $('#editBookForm').data('original', {
@@ -389,7 +455,8 @@ require_once 'db_connection.php';
                 copyright: copyright,
                 stocks: stocks,
                 publisher: publisher,
-                category: category
+                category: category,
+                cover: currentCover
             });
 
             $('#editBookModal').modal('show');
@@ -429,6 +496,7 @@ require_once 'db_connection.php';
                 $('#edit_stocks').val(original.stocks);
                 $('#edit_publisher').val(original.publisher);
                 $('#edit_category').val(original.category);
+                $('#edit_photo_preview').attr('src', original.cover); // Restore original cover
             }
         });
 
@@ -436,6 +504,42 @@ require_once 'db_connection.php';
         if ($('.alert-success').length > 0) {
             console.log('Success message found'); // For debugging
         }
+    });
+
+    function previewImage(input, previewId) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#' + previewId).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+
+    // Add this to your existing script section
+    function incrementStocks(button) {
+        var input = $(button).siblings('input[type="number"]');
+        var value = parseInt(input.val());
+        input.val(value + 1);
+    }
+
+    function decrementStocks(button) {
+        var input = $(button).siblings('input[type="number"]');
+        var value = parseInt(input.val());
+        if (value > 0) {
+            input.val(value - 1);
+        }
+    }
+
+    // Add this to prevent manual input of negative numbers
+    $(document).ready(function() {
+        $('input[name="stocks"]').on('input', function() {
+            var value = $(this).val();
+            if (value < 0) {
+                $(this).val(0);
+            }
+        });
     });
 </script>
 </body>
